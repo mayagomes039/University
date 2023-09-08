@@ -1,0 +1,4 @@
+Fatura 1cc78f1c-dc68-462f-94ab-422ea942fafd
+t-shirt : 7.0€
+mala preta: 45.2€
+Total: 78.5€
