@@ -1,0 +1,68 @@
+@{
+    ViewData["Title"] = "Formulário Multibanco";
+}
+
+
+<style>
+    body {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        flex-wrap: wrap;
+        background: rgb(52, 58, 48);
+        padding: 10px;
+        transform: (0% ,20%);
+        color: white;
+    }
+
+    .wrapper {
+        width: calc(50% - 20px);
+        background: rgb(82, 86, 65);
+        color: white;
+        border-radius: 10px;
+        padding: 30px 40px;
+        margin: 10px;
+        text-align: center;
+        font-size: 18px;
+        position: center;
+        
+    }
+
+    .logo {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 100px;
+        height: auto;
+    }
+</style>
+
+<h1 style="color: white; font-weight: bold;"> Pagamento multibanco</h1>
+
+<body>
+
+    <img srcset="../css/HeritageBidsno.png" alt="Logo" class="logo">
+    <div>
+
+        <a asp-action="Index" style="color: white; text-decoration: none;font-size: 20px;margin-left: 500px">
+            Volte Para Trás
+            <span style="color: wheat; margin-left: 5px; text-decoration: none; cursor: pointer;font-size: 22px;">AQUI</span>
+        </a>
+    </div>
+
+    <form method="post" action="@Url.Action("ProcessarFormularioMultibanco", "MenuCliente", new { mensagemId = ViewData["mensagemId"] })">
+        <label for="proprietario">Proprietário do Cartão:</label>
+        <input type="text" name="proprietario" required /><br />
+
+        <label for="dataValidade">Data de Validade:</label>
+        <input type="text" name="dataValidade" placeholder="MM/AA" required /><br />
+
+        <label for="numeroCartao">Número do Cartão:</label>
+        <input type="text" name="numeroCartao" required /><br />
+
+        <input type="hidden" name="mensagemId" value="@Model" />
+    
+        <button type="submit">Pagar</button>
+    </form>
+    
+    </body>

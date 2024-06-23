@@ -1,0 +1,134 @@
+@{
+    ViewData["Title"] = "Menu Principal";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Adiciona estilo para posicionar os ícones e textos sobre o First set of images */
+        .overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+        }
+
+            .overlay img {
+                width: 100%;
+                max-width: 170px;
+                height: auto;
+                margin-bottom: 10px;
+            }
+
+            .overlay a {
+                color: white !important;
+                text-decoration: none !important;
+                font-weight: bold;
+                font-size: 1.0vw;
+                display: block;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+        .container-fluid {
+            padding: 0;
+        }
+
+        .link-overlay {
+            display: block;
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+            position: relative;
+        }
+
+        body {
+            background-image: url('../css/scenarium-antique-mesa.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="component" class="container-fluid py-3">
+
+        <!-- Heading -->
+        <p class="text-center text-white fs-3 font-family-Inter m-0 px-3 py-2" style="font-weight: bold">MENU</p>
+
+        <!-- First set of images: Background -->
+        <div class="row justify-content-center align-items-center">
+            <!-- Image 1 -->
+            <div class="col-sm-4 col-md-3" style="position: relative;">
+                <img srcset="../css/Capturar11.png" class="img-fluid m-2" />
+                <div class="overlay">
+                    <p><a asp-action="ConsultarPerfil" asp-controller="MenuCliente">Consultar Perfil</a></p>
+                    <a class="link-overlay" asp-action="ConsultarPerfil" asp-controller="MenuCliente">
+                        <img srcset="../css/do-utilizador_318-5040481.png" alt="Icone 1">
+                    </a>
+                </div>
+            </div>
+
+
+            <!-- Image 2 -->
+            <div class="col-sm-4 col-md-3" style="position: relative;">
+                <img srcset="../css/Capturar11.png" class="img-fluid m-2" />
+                <div class="overlay">
+                    <p><a asp-action="VisualizarLeiloes" asp-controller="MenuCliente">Ver Leilões</a></p>
+                    <a class="link-overlay" asp-action="VisualizarLeiloes" asp-controller="MenuCliente">
+                        <img srcset="../css/10783251(2).png" alt="Icone 3">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Second set of images -->
+        <div class="row justify-content-center align-items-center">
+            <!-- Image 3 -->
+            <div class="col-sm-4 col-md-3" style="position: relative;">
+                <img srcset="../css/Capturar11.png" class="img-fluid m-2" />
+                <div class="overlay">
+                    <p><a asp-action="HistoricoCompras" asp-controller="MenuCliente">Consultar Histórico de Compras</a></p>
+                    <a class="link-overlay" asp-action="HistoricoCompras" asp-controller="MenuCliente">
+                        <img srcset="../css/32602341.png" alt="Icone 4">
+                    </a>
+
+
+                </div>
+            </div>
+
+
+            <!-- Image 4 -->
+            <div class="col-sm-4 col-md-3" style="position: relative;">
+                <img srcset="../css/Capturar11.png" class="img-fluid m-2" />
+                <div class="overlay">
+                    <p><a asp-action="VisualizarMensagens" asp-controller="MenuCliente">Visualizar Mensagens</a></p>
+                    <a class="link-overlay" asp-action="VisualizarMensagens" asp-controller="MenuCliente">
+                        <img srcset="../css/mem.png" alt="Icone 6">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <
+    <a asp-action="Logout" asp-controller="Menu" style="color: white; text-decoration: none; font-size: 20px; margin-left: 500px;">
+        <span style="color: red; margin-left: 650px; text-decoration: none; cursor: pointer; font-size: 24px; font-weight: bold;">Logout</span>
+    </a>
+
+</body>
+
+</html>
+
+
+
+

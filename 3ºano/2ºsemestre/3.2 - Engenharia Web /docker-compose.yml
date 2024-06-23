@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  appruas:
+    build: ./appRuas
+    ports:
+      - "2034:2034"
+    environment:
+      - MONGO_URL=mongodb://mongodb:27017/EWtp2024
+    depends_on:
+      - mongodb
+
+  auth:
+    build: ./auth
+    ports:
+      - "3434:3434"
+    environment:
+      - MONGO_URL=mongodb://mongodb:27017/EWtp2024
+    depends_on:
+      - mongodb
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3439:3439"
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    depends_on:
+      - mongo-seed
+
+  mongo-seed:
+    image: mongo:latest
+    volumes:
+      - ./data/data_treated/ruas.json:/ruas.json:ro
+      - ./data/data_treated/users.json:/users.json:ro
+    entrypoint: >
+      /bin/sh -c '
+        mongoimport --host mongodb -d EWtp2024 -c ruas --type json --file /ruas.json --jsonArray &&
+        mongoimport --host mongodb -d EWtp2024 -c users --type json --file /users.json --jsonArray
+      '

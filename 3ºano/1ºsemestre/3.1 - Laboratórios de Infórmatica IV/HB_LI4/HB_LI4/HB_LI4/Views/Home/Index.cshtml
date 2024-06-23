@@ -1,0 +1,33 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model HB_LI4.Controllers.LoginViewModel
+
+@{
+    ViewData["Title"] = "Bem-vindo à Heritage Bids";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Bem-vindo à Heritage Bids</h1>
+    <p>Opção: <a asp-action="Create" asp-controller="Cliente">Registar-se</a>.</p>
+</div>
+
+<div class="text-center mt-4">
+    <h2>Login</h2>
+
+    <form asp-action="Index" asp-controller="Home" method="post">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="form-group">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="PalavraPasse"></label>
+            <input asp-for="PalavraPasse" type="password" class="form-control" />
+            <span asp-validation-for="PalavraPasse" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Entrar</button>
+    </form>
+</div>

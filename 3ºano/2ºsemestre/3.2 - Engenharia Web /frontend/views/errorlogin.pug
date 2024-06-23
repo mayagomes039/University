@@ -1,0 +1,63 @@
+doctype html
+html
+    head
+        title Erro de Login
+        link(rel='stylesheet', href='/stylesheets/w3.css')
+        link(rel="icon" href="/images/favicon.png" type="image/png")
+
+        style.
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+                background-color: #f0f0f5;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+            .error-container {
+                width: 100%;
+                max-width: 400px;
+                padding: 20px;
+                background-color: white;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                text-align: center;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            .error-container:hover {
+                transform: scale(1.02);
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            }
+            h2 {
+                margin-bottom: 20px;
+                color: #be2929;
+            }
+            p {
+                margin-bottom: 20px;
+                font-size: 18px;
+                color: #be2929;
+            }
+            button {
+                width: 100%;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                cursor: pointer;
+                border-radius: 4px;
+                transition: background-color 0.3s ease, transform 0.3s ease;
+            }
+            button:hover {
+                background-color: #45a049;
+                transform: translateY(-2px);
+            }
+    body
+        .error-container
+            h2 Erro de Login
+            p Credencias Inválidas 
+            button(type="button" onclick="window.location.href='/login'") Tentar Novamente

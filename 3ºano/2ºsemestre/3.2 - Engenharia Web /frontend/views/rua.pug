@@ -1,0 +1,179 @@
+doctype html
+html
+    head
+        title Ruas de Braga
+        link(rel='stylesheet', href='/stylesheets/w3.css')
+
+        link(rel="icon" href="/images/favicon.png" type="image/png")
+
+        style.
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+                background-color: #f0f0f5;
+            }
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: white;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            .container:hover {
+                transform: scale(1.02);
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            }
+            .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+            }
+            .header button, .header form button {
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+                border-radius: 4px;
+                transition: background-color 0.3s ease, transform 0.3s ease;
+            }
+            .header button:hover, .header form button:hover {
+                background-color: #45a049;
+                transform: translateY(-2px);
+            }
+            .section {
+                margin-bottom: 40px;
+                padding: 20px;
+                background-color: #f9f9f9;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            }
+            .section:hover {
+                background-color: #f1f1f1;
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+            }
+            .section h2 {
+                margin-top: 0;
+            }
+            .casa-container {
+                margin-bottom: 20px;
+                padding: 15px;
+                background-color: #fff;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            .casa-container:hover {
+                transform: scale(1.01);
+                box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+                transition: transform 0.3s ease;
+            }
+            th, td {
+                padding: 12px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+                transition: background-color 0.3s ease, color 0.3s ease;
+            }
+            th {
+                background-color: #f2f2f2;
+            }
+            tr:hover td {
+                background-color: #e9e9e9;
+                color: #333;
+            }
+            a {
+                color: #2196F3;
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+            a:hover {
+                color: #0b7dda;
+            }
+            img {
+                max-width: 100%;
+                height: auto;
+                margin-top: 10px;
+                border-radius: 4px;
+                transition: transform 0.3s ease;
+            }
+            img:hover {
+                transform: scale(1.05);
+            }
+    body
+        .container
+            .header
+                button(onclick="window.history.back();") Voltar à página anterior
+                form(method="GET", action='/alteracoespendentes/adicionar/'+rua.rua)
+                    if(nivel == "admin")
+                        button(type="submit")  Alterar Casa 
+                    else
+                        button(type="submit")  Sugerir Alteração
+
+            .section
+                h2 #{rua.nome}
+                p Número: #{rua.rua}
+                p Descrição: #{rua.descrições}
+
+            .section
+              if rua.figuras && rua.figuras.length > 0
+                
+                .old-images
+                  each figura in rua.figuras
+                    if figura.id === undefined
+                     h2 Outras Imagens
+                      div
+                        img(src=figura.imagem, alt='Imagem de figura antiga')
+
+                // Section for old images
+                
+                .old-images
+                  each figura in rua.figuras
+                    if typeof figura.id === 'string' && figura.id.startsWith('MRB')
+                     h2 Representação Antiga
+                      div
+                        img(src=figura.imagem, alt='Imagem de figura antiga')
+
+                // Section for current images
+                
+                .current-images
+                  each figura in rua.figuras
+                    if typeof figura.id === 'string' && !figura.id.startsWith('MRB')
+                     h2 Ruas Na Atualidade
+                      div
+                        img(src=figura.imagem, alt='Imagem de figura atual')
+
+              else
+                  p Não há figuras registradas para esta rua.
+
+            .section
+                h2 Casas
+                if rua.casas && rua.casas.length > 0
+                    each casa in rua.casas
+                        .casa-container
+                            p Número: #{casa.número}
+                            p Enfiteutas: #{casa.enfiteutas.join(', ')}
+                            if casa.foro && casa.foro.length > 0 && casa.foro !== 'N/A'
+                                p Foro: #{casa.foro}
+                            p Descrições:
+                            ul
+                                each desc in casa.desc
+                                    li #{desc}
+                            if casa.vista && casa.vista.length > 0 && casa.vista !== 'N/A'
+                                p Vista: #{casa.vista}
+                else
+                    p Não há casas registradas para esta rua.

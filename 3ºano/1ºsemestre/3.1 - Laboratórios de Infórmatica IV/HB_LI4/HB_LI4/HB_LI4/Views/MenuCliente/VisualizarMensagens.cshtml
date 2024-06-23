@@ -1,0 +1,89 @@
+@model ICollection<HB_LI4.Models.Mensagem>
+
+@{
+    ViewData["Title"] = "Visualizar Mensagens";
+}
+
+
+<style>
+    body {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        flex-wrap: wrap;
+        background: rgb(52, 58, 48);
+        padding: 10px;
+        transform: (0% ,20%);
+        color: white;
+    }
+
+    .wrapper {
+        width: calc(50% - 20px);
+        background: rgb(82, 86, 65);
+        color: white;
+        border-radius: 10px;
+        padding: 30px 40px;
+        margin: 10px;
+        text-align: center;
+        font-size: 18px;
+        position: center;
+        
+    }
+
+    .logo {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 100px;
+        height: auto;
+    }
+</style>
+
+<h1 style="color: white; font-weight: bold;"> Visualizar Mensagens</h1>
+
+<body>
+
+    <img srcset="../css/HeritageBidsno.png" alt="Logo" class="logo">
+    <div>
+
+        <a asp-action="Index" style="color: white; text-decoration: none;font-size: 20px;margin-left: 75%">
+            Voltar ao Menu Principal
+            <span style="color: wheat; margin-left: 5px; text-decoration: none; cursor: pointer;font-size: 22px;">AQUI</span>
+        </a>
+    </div>
+
+@if (Model != null && Model.Any())
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>
+                
+                Conteúdo
+               
+            </th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var mensagem in Model)
+        {
+            <tr>
+            <td>
+            <dt class="col-sm-4" style="margin-bottom: 10px; color: white;">
+                    @mensagem.Conteudo
+                   </dt>
+                </td>
+                <td>
+                    <a asp-action="Pagar" asp-route-mensagemId ="@mensagem.ID">Pagar</a> 
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Não há mensagens disponíveis.</p>
+}
+</body>

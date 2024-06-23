@@ -1,0 +1,102 @@
+doctype html
+html
+    head
+        title Login
+        link(rel='stylesheet', href='/stylesheets/w3.css')
+
+        link(rel="icon" href="/images/favicon.png" type="image/png")
+
+        style.
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+                background-color: #f0f0f5;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+            }
+            .login-container {
+                width: 100%;
+                max-width: 400px;
+                padding: 20px;
+                background-color: white;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            .login-container:hover {
+                transform: scale(1.02);
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            }
+            h2 {
+                margin-bottom: 20px;
+                text-align: center;
+            }
+            label {
+                display: block;
+                margin-bottom: 8px;
+                font-weight: bold;
+            }
+            input[type="text"], input[type="password"] {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 20px;
+                border: 1px solid #ddd;
+                border-radius: 4px;
+                box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+                transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            }
+            input[type="text"]:hover, input[type="password"]:hover {
+                border-color: #2196F3;
+                box-shadow: 0 0 8px rgba(33, 150, 243, 0.2);
+            }
+            button {
+                width: 100%;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                cursor: pointer;
+                border-radius: 4px;
+                transition: background-color 0.3s ease, transform 0.3s ease;
+            }
+            button:hover {
+                background-color: #45a049;
+                transform: translateY(-2px);
+            }
+            .forgot-password {
+                display: block;
+                text-align: center;
+                margin-top: 20px;
+                color: #2196F3;
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+            .forgot-password:hover {
+                color: #0b7dda;
+            }
+    body
+        .login-container
+            h2 Login
+            form(method="POST", action="/login")
+                label(for="username") Username
+                input(type="text", name="username", id="username", required=true)
+
+                label(for="password") Password
+                input(type="password", name="password", id="password", required=true)
+
+                button(type="submit") Login
+
+                a.forgot-password(href="/registar") Resgistar
+
+        script(type="text/javascript").
+            window.addEventListener('load', function() {
+                if ("#{aviso}" != "") {
+                    alert("#{aviso}");
+                }
+            })

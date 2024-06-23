@@ -1,0 +1,23 @@
+doctype html 
+html
+    head
+        title Rua
+        link(rel='stylesheet', href='/stylesheets/w3.css')
+        link(rel="icon" href="/images/favicon.png" type="image/png")
+
+    body
+        button(onclick="window.history.back()") Voltar a página anterior
+        //botão para visualizar sugestões de alterações
+        button(onclick="window.location.href='/alteracoes_pendentes'") Visualizar sugestões de alterações
+        table.w3-table.w3-striped
+            thead
+                tr
+                    th Rua
+                    th Nome
+                    th Detalhes
+            tbody
+                each rua in ruas
+                    tr
+                        td #{rua.rua}
+                        td #{rua.nome}
+                        td #[a(href="/ruas/"+rua.rua) Ver detalhes ]

@@ -1,0 +1,40 @@
+doctype html
+html
+  head
+    title Ruas de Braga
+    link(rel='stylesheet', href='/stylesheets/w3.css')
+    link(rel="icon" href="/images/favicon.png" type="image/png")
+
+    style.
+      body
+        margin: 0;
+        font-family: Arial, sans-serif;
+      .header
+        text-align: center;
+        padding: 20px;
+        background-color: #f2f2f2;
+      .header h1
+        margin: 0;
+        color: #333;
+      .button
+        background-color: #4CAF50; 
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 8px;
+      .button:hover
+        background-color: #45a049; 
+      .top-image
+        width: 100%; 
+        height: auto; 
+  body
+    img.top-image(src='/images/bj.png', alt='Imagem de ruas')
+    .header
+      h1 Ruas de Braga
+      a.button(href='/ruas') Ver Ruas de Braga

@@ -1,0 +1,186 @@
+@model HB_LI4.Models.Categoria
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heritage Bids | Criar categoria</title>
+</head>
+
+<style>
+    {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-image: url('../css/scenarium-antique-mesa.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin: 0;
+        font-family: 'Arial', sans-serif;
+    }
+
+
+    .wrapper {
+        width: 420px;
+        background: rgb(82, 88, 71);
+        color: white;
+        border-radius: 10px;
+        padding: 30px 40px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+        .wrapper h1 {
+            font-size: 36px;
+            text-align: center;
+        }
+
+
+        .wrapper .form-group {
+            position: relative;
+            width: 100%;
+            height: 50px;
+            margin: 30px 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+    .form-group .asp-for {
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        border: none;
+        outline: none;
+        border: 2px solid rgba(255, 255, 255, .2);
+        border-radius: 100 px;
+        font-size: 16px;
+        color: #fff;
+        border-radius: 10px;
+        padding: 20px 45px 20px 20px;
+    }
+
+
+    .wrapper .form-group {
+        position: relative;
+        width: 100%;
+        height: 50px;
+        margin: 30px 0;
+        font-family: 'Arial', sans-serif;
+    }
+
+    .form-group .asp-for {
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        border: none;
+        outline: none;
+        border: 2px solid rgba(255, 255, 255, .2);
+        border-radius: 100 px;
+        font-size: 16px;
+        color: #fff;
+        border-radius: 10px;
+        padding: 20px 45px 20px 20px;
+    }
+
+        .form-group .asp-for:hover {
+            background: #ccc;
+            color: #fff;
+        }
+
+    .wrapper .btn.btn-primary {
+        width: 100%;
+        height: 40px;
+        background: #fff;
+        border: none;
+        outline: none;
+        border-radius: 40px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        font-size: 20px;
+        color: #333;
+        font-weight: 800;
+        margin-top: 20px;
+    }
+
+        .wrapper .btn.btn-primary:hover {
+            background: #ccc;
+            color: #fff;
+        }
+
+
+    .wrapper .back {
+        font-size: 14.5px;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .back p a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+    }
+
+        .back p a:hover {
+            text-decoration: underline
+        }
+
+    .link-overlay,
+    p a.link-overlay {
+        color: white;
+    }
+
+    .row .col-md-4:first-child {
+        margin-left: 33%;
+    }
+</style>
+
+
+<body>
+
+    <div class="wrapper">
+
+        <h1>Criar categoria</h1>
+
+        <hr />
+        <div class="row">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Nome" class="control-label"></label>
+                        <input asp-for="Nome" class="form-control" />
+                        <span asp-validation-for="Nome" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+        </div>
+
+        <div class="back">
+            <a class="link-overlay" asp-controller="Menu" asp-action="GerirCategorias">Voltar para Gerir Categorias</a>
+        </div>
+
+    </div>
+
+</body>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

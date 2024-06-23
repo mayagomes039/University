@@ -1,0 +1,160 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model HB_LI4.Controllers.LoginViewModel
+
+@{
+    ViewData["Title"] = "Bem-vindo à Heritage Bids";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv= "X-UA-Compatible" content="IE=edge">
+    <meta name= "viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heritage Bids |  Efetuar Login</title>
+</head>
+
+<style>
+{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url('../css/scenarium-antique-mesa.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+    .wrapper {
+        width: 420px;
+        background: rgb(82, 88, 71);
+        color: white;
+        border-radius: 10px;
+        padding: 30px 40px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+.wrapper img {
+    width: 130px;
+    height: 130px; 
+    position: relative;
+    transform: translateX(79%);
+
+}
+
+.wrapper h2{
+    font-size: 36px;
+    text-align: center;
+}
+
+.wrapper .form-group{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px 0;
+    font-family: 'Arial', sans-serif;
+}
+
+.form-group .asp-for{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid rgba(255, 255, 255, .2);
+    font-size: 16px;
+    color: #fff;
+    border-radius: 10px;
+    padding: 20px 45px 20px 20px;
+}
+
+    .form-group .asp-for:hover {
+        background: #ccc;
+        color: #fff;
+    }
+
+    .wrapper .btn.btn-primary {
+        width: 100%;
+        height: 40px;
+        background: #fff;
+        border: none;
+        outline: none;
+        border-radius: 40px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        font-size: 20px;
+        color: #333;
+        font-weight: 800;
+        margin-top: 20px;
+    }
+
+        .wrapper .btn.btn-primary:hover {
+            background: #ccc;
+            color: #fff;
+        }
+        
+.wrapper .register-link {
+        font-size: 14.5px;
+        text-align: center;
+        margin-top: 20px;
+}
+
+.register-link p a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link p a:hover {
+      text-decoration: underline
+}
+
+</style>
+
+
+<body>
+
+
+
+<div class="wrapper">
+     
+    <img src="../css/HeritageBids.png">
+    <h2>Efetuar Login</h2>
+
+    <p>@ViewBag.Erro</p>
+    <form asp-action="verLogIn" asp-controller="Login" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+    
+            <div class="form-group">
+                <label asp-for="PalavraPasse"></label>
+                <input asp-for="PalavraPasse" type="password" class="form-control" />
+                <span asp-validation-for="PalavraPasse" class="text-danger"></span>
+            </div>
+    
+            <button type="submit" class="btn btn-primary">Entrar</button>
+            
+            <div class="register-link">
+                <p>Regista-te <a asp-controller="Registo">aqui</a></p>
+                </div>
+            
+    </form>
+    </div>
+
+</body>

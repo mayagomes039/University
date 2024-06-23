@@ -1,0 +1,11 @@
+@model IEnumerable<HB_LI4.Models.Categoria>
+@{
+    ViewData["Title"] = "Gerir Categorias";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Gerir Categorias</h1>
+    <p>opção 1: <a asp-action="EditarCategoria" asp-controller="GerirCategorias">Editar categoria</a>.</p>
+    <p>opção 2: <a asp-action="CriarCategoria" asp-controller="GerirCategorias">Criar categoria</a>.</p>
+    <p>opção 3: <a asp-action="Index" asp-controller="Menu">Voltar ao menu principal</a>.</p>
+</div>

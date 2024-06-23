@@ -1,0 +1,98 @@
+@model HB_LI4.Models.Cliente
+
+@{
+    ViewData["Title"] = "Details";
+}
+<style>
+
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-image: url('/css/scenarium-antique-mesa.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin: 0;
+        font-family: 'Arial', sans-serif;
+    }
+
+
+    .wrapper {
+        width: 600px;
+        background: rgb(82, 88, 71);
+        color: white;
+        border-radius: 10px;
+        padding: 30px 20px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    .wrapper .row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+        .row .col-sm-2 {
+            width: 200px;
+        }
+
+        .row .col-sm-10 {
+            width: 60%;
+        }
+
+    .link-overlay,
+    p a.link-overlay {
+        color: white;
+    }
+
+</style>
+<body>
+<div class="wrapper">
+<h1>Details</h1>
+
+<div>
+    <h4>Cliente</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
+                <dd class = "col-sm-10">
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PalavraPasse)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PalavraPasse)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Telemovel)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Telemovel)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="link-overlay" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a>
+    <div>
+    <a class="link-overlay" asp-controller="MenuCliente" asp-action="Index">Voltar ao Menu Principal</a>
+    </div>
+</div>
+
+</div>
+</body>

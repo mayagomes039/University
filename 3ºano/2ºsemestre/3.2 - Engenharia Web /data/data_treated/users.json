@@ -1,0 +1,22 @@
+[
+    {
+        "_id":"A4140",
+        "username":"José Ramalho",
+        "email": "jcr@di.uminho.pt",
+        "filiacao": "CC - EW e PL ",
+        "nivel": "admin",
+        "dataRegisto": "2020-11-10",
+        "dataUltimoAcesso": "2020-11-13",
+        "password": "fixe" 
+    },
+    {
+      "_id":"A89192",
+      "username":"Mara Temido",
+      "email": "A89192@alunos.uminho.pt",
+      "filiacao": "Doutora - EW e PL ",
+      "nivel": "consumidor",
+      "dataRegisto": "2020-11-10",
+      "dataUltimoAcesso": "2020-11-32",
+      "password": "a1"
+    }
+]

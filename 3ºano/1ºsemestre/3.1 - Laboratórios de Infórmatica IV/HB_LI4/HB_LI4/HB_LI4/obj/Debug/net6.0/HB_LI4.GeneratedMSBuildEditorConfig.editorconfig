@@ -1,0 +1,212 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = HB_LI4
+build_property.RootNamespace = HB_LI4
+build_property.ProjectDir = /Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4
+build_property._RazorSourceGeneratorDebug = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Categoria/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2F0ZWdvcmlhL0NyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Categoria/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2F0ZWdvcmlhL0RlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Categoria/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2F0ZWdvcmlhL0RldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Categoria/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2F0ZWdvcmlhL0VkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Categoria/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2F0ZWdvcmlhL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Cliente/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xpZW50ZS9DcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Cliente/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xpZW50ZS9EZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Cliente/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xpZW50ZS9EZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Cliente/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xpZW50ZS9FZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Cliente/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2xpZW50ZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Funcionario/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRnVuY2lvbmFyaW8vQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Funcionario/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRnVuY2lvbmFyaW8vRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Funcionario/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRnVuY2lvbmFyaW8vRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Funcionario/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRnVuY2lvbmFyaW8vRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Funcionario/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRnVuY2lvbmFyaW8vSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/GerirCategorias/EditarCategoria.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvR2VyaXJDYXRlZ29yaWFzL0VkaXRhckNhdGVnb3JpYS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/GerirCategorias/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvR2VyaXJDYXRlZ29yaWFzL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Lance/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTGFuY2UvQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Lance/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTGFuY2UvRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Lance/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTGFuY2UvRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Lance/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTGFuY2UvRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Lance/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTGFuY2UvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Leilao/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTGVpbGFvL0NyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Leilao/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTGVpbGFvL0RlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Leilao/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTGVpbGFvL0RldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Leilao/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTGVpbGFvL0VkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Leilao/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTGVpbGFvL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Login/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTG9naW4vSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Menu/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVudS9EZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Menu/GerirCategorias.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVudS9HZXJpckNhdGVnb3JpYXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Menu/HistoricoVendas.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVudS9IaXN0b3JpY29WZW5kYXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Menu/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVudS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Menu/VisualizarClientes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVudS9WaXN1YWxpemFyQ2xpZW50ZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Menu/VisualizarLeiloes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVudS9WaXN1YWxpemFyTGVpbG9lcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/MenuCliente/FormularioMBWay.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVudUNsaWVudGUvRm9ybXVsYXJpb01CV2F5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/MenuCliente/FormularioMultibanco.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVudUNsaWVudGUvRm9ybXVsYXJpb011bHRpYmFuY28uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/MenuCliente/HistoricoCompras.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVudUNsaWVudGUvSGlzdG9yaWNvQ29tcHJhcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/MenuCliente/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVudUNsaWVudGUvSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/MenuCliente/Pagar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVudUNsaWVudGUvUGFnYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/MenuCliente/VisualizarLeiloes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVudUNsaWVudGUvVmlzdWFsaXphckxlaWxvZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/MenuCliente/VisualizarMensagens.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVudUNsaWVudGUvVmlzdWFsaXphck1lbnNhZ2Vucy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Registo/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUmVnaXN0by9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/mayagomes/Desktop/HB_LI4/HB_LI4/HB_LI4/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-fc69is8l7e

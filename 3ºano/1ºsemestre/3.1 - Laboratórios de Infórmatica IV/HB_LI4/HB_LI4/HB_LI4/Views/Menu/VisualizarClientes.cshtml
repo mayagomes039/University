@@ -1,0 +1,105 @@
+@model List<HB_LI4.Models.Cliente>
+
+
+@{
+    ViewData["Title"] = "Visualizar Clientes";
+}
+
+
+<style>
+    body {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        flex-wrap: wrap;
+        background: rgb(52, 58, 48);
+        padding: 10px;
+    }
+
+    .wrapper {
+        width: calc(50% - 20px);
+        background: rgb(82, 86, 65);
+        color: white;
+        border-radius: 10px;
+        padding: 30px 40px;
+        margin: 10px;
+        text-align: center;
+        font-size: 18px;
+        position: relative;
+        margin-left: 25%;
+    }
+
+    .logo {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 100px;
+        height: auto;
+    }
+
+    .wrapper .row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+    .row .col-sm-2 {
+        width: 200px;
+    }
+
+    .row .col-sm-10 {
+        width: 60%;
+    }
+
+    .link-overlay,
+    p a.link-overlay {
+        color: white;
+    }
+</style>
+
+<body>
+    <h1 style="color: white; font-weight: bold;"> Clientes</h1>
+    <img srcset="../css/HeritageBidsno.png" alt="Logo" class="logo">
+    <div>
+
+        <a asp-action="Index" style="color: white; text-decoration: none;font-size: 20px;margin-left: 75%">
+            Volte ao Menu Principal
+            <span style="color: wheat; margin-left: 5px; text-decoration: none; cursor: pointer;font-size: 22px;">AQUI</span>
+        </a>
+    </div>
+
+    @if (Model != null && Model.Any())
+    {
+        foreach (var cliente in Model)
+        {
+            <div class="wrapper">
+                <h4>Cliente</h4>
+                <hr />
+                <dl class="row">
+                    <dt class="col-sm-4" style="margin-bottom: 10px;">
+                        @Html.DisplayNameFor(model => cliente.Name)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => cliente.Name)
+                    </dd>
+
+                    <dt class="col-sm-4" style="margin-bottom: 10px;">
+                        @Html.DisplayNameFor(model => cliente.Telemovel)
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => cliente.Telemovel)
+                    </dd>
+                </dl>
+                <a class="link-overlay" asp-action="Delete" asp-route-id="@cliente.Id">Remover</a>
+            </div>
+        }
+    }
+    else
+    {
+        <p>Nenhum cliente encontrado.</p>
+    }
+
+</body>
+
+
+

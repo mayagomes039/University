@@ -1,0 +1,126 @@
+@model List<HB_LI4.Models.Leilao>
+
+@{
+    ViewData["Title"] = "Histórico de Vendas";
+}
+
+<style>
+    body {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        flex-wrap: wrap;
+        background: rgb(52, 58, 48);
+        padding: 10px;
+        transform: (0%, 20%);
+    }
+
+    .wrapper {
+        width: calc(50% - 20px);
+        background: rgb(82, 86, 65);
+        color: white;
+        border-radius: 10px;
+        padding: 30px 40px;
+        margin: 10px;
+        text-align: center;
+        font-size: 18px;
+        position: center;
+    }
+
+    .logo {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 100px;
+        height: auto;
+    }
+
+    .leilao-image {
+                max-width: 200px;
+                max-height: 200px;
+                margin: 20px auto;
+            }
+        
+            .leilao-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+</style>
+
+<h1 style="color: white; font-weight: bold;"> Histórico de Vendas</h1>
+<body>
+
+    <img srcset="../css/HeritageBidsno.png" alt="Logo" class="logo">
+    <div>
+
+        <a asp-action="Index" style="color: white; text-decoration: none;font-size: 20px;margin-left: 75%">
+            Volte ao Menu Principal
+            <span style="color: wheat; margin-left: 5px; text-decoration: none; cursor: pointer;font-size: 22px;">AQUI</span>
+        </a>
+    </div>
+
+    @if (Model != null && Model.Any())
+    {
+        foreach (var leilao in Model)
+        {
+            <div class="wrapper">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h4>Leilao</h4>
+                        <hr />
+                        <dl>
+                            <dt>
+                                @Html.DisplayNameFor(model => leilao.PrecoInicial)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => leilao.PrecoInicial)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => leilao.PrecoFinal)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => leilao.PrecoFinal)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => leilao.Nome)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => leilao.Nome)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => leilao.DataInicio)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => leilao.DataInicio)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => leilao.DataFim)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => leilao.DataFim)
+                            </dd>
+                        </dl>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="leilao-image">
+                            @if (leilao.Imagem != null && leilao.Imagem.Length > 0)
+                            {
+                                <img src="data:image;base64,@Convert.ToBase64String(leilao.Imagem)" alt="Imagem do leilão" />
+                            }
+                            else
+                            {
+                                <span>Nenhuma imagem disponível</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p>Nenhum leilão no histórico de vendas.</p>
+    }
+
+</body>

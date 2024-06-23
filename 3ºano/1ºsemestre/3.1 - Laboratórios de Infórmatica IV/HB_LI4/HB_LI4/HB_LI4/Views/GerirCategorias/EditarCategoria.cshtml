@@ -1,0 +1,63 @@
+@model int
+
+<!DOCTYPE html>
+<style>
+
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-image: url('../css/scenarium-antique-mesa.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin: 0;
+        font-family: 'Arial', sans-serif;
+    }
+
+
+    .wrapper {
+        width: 420px;
+        background: rgb(82, 88, 71);
+        color: white;
+        border-radius: 10px;
+        padding: 30px 40px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    .link-overlay,
+    p a.link-overlay {
+        color: white;
+    }
+
+</style>
+<html>
+<head>
+    <title>Pedir ID da Categoria para editar</title>
+</head>
+
+<body>
+    <div class="wrapper">
+
+
+<h2>Pedir ID da Categoria</h2>
+
+<form asp-action="PedirIdCategoria" method="post">
+    <label for="idCategoria">ID da Categoria:</label>
+    <input type="number" id="idCategoria" name="idCategoria" required>
+    <br />
+    <button type="submit">Enviar</button>
+</form>
+        <div class="back">
+            <a class="link-overlay" asp-controller="Menu" asp-action="GerirCategorias">Voltar para Gerir Categorias</a>
+        </div>
+
+</div>
+</body>
+</html>

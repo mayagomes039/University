@@ -1,0 +1,53 @@
+@model List<HB_LI4.Models.Categoria>
+@{
+    ViewData["Title"] = "Gerir Categorias";
+}
+
+
+<style>
+
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-image: url('../css/scenarium-antique-mesa.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin: 0;
+        font-family: 'Arial', sans-serif;
+    }
+
+
+    .wrapper {
+        width: 420px;
+        background: rgb(82, 88, 71);
+        color: white;
+        border-radius: 10px;
+        padding: 30px 40px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    .link-overlay,
+    p a.link-overlay {
+        color: white;
+    }
+
+</style>
+<body>
+    <div class="wrapper">
+        <div class="text-center">
+            <h1 class="display-4">Gerir Categorias</h1>
+            <p>Opção 1: <a class="link-overlay" asp-action="EditarCategoria" asp-controller="GerirCategorias">Editar Categoria</a>.</p>
+            <p>Opção 2: <a class="link-overlay" asp-action="CriarCategoria" asp-controller="GerirCategorias">Criar Categoria</a>.</p>
+            <p>Opção 3: <a class="link-overlay" asp-action="Index" asp-controller="Categoria">Visualizar as Categorias</a>.</p>
+            <p>Opção 4: <a class="link-overlay" asp-action="Index" asp-controller="Menu">Voltar ao Menu Principal</a>.</p>
+        </div>
+    </div>
+</body>

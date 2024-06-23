@@ -1,0 +1,406 @@
+{
+  "service-definitions": [
+    {
+      "id": "sp",
+      "descr": "Substituir pneus",
+      "duraÃ§Ã£o": 40,
+      "tipo": "universal"
+    },
+    {
+      "id": "cr",
+      "descr": "Calibrar rodas",
+      "duraÃ§Ã£o": 20,
+      "tipo": "universal"
+    },
+    {
+      "id": "ad",
+      "descr": "Alinhar direção",
+      "duraÃ§Ã£o": 30,
+      "tipo": "universal"
+    },
+    {
+      "id": "sct",
+      "descr": "Subsituir calços travões",
+      "duraÃ§Ã£o": 60,
+      "tipo": "universal"
+    },
+    {
+      "id": "mot",
+      "descr": "Mudar oleo travões",
+      "duraÃ§Ã£o": 20,
+      "tipo": "universal"
+    },
+    {
+      "id": "li",
+      "descr": "Limpeza interior",
+      "duraÃ§Ã£o": 120,
+      "tipo": "universal"
+    },
+    {
+      "id": "le",
+      "descr": "Limpeza exterior",
+      "duraÃ§Ã£o": 30,
+      "tipo": "universal"
+    },
+    {
+      "id": "sfah",
+      "descr": "Substituir filtro ar habitáculo",
+      "duraÃ§Ã£o": 30,
+      "tipo": "universal"
+    },
+    {
+      "id": "mom",
+      "descr": "Mudar óleo motor",
+      "duraÃ§Ã£o": 10,
+      "tipo": "combustao"
+    },
+    {
+      "id": "sfo",
+      "descr": "Substituir filtro óleo",
+      "duraÃ§Ã£o": 20,
+      "tipo": "combustao"
+    },
+    {
+      "id": "sfc",
+      "descr": "Substituir filtro combustível",
+      "duraÃ§Ã£o": 30,
+      "tipo": "combustao"
+    },
+    {
+      "id": "sfam",
+      "descr": "Substituir filtro ar motor",
+      "duraÃ§Ã£o": 30,
+      "tipo": "combustao"
+    },
+    {
+      "id": "scc",
+      "descr": "Substituir conversor catalático",
+      "duraÃ§Ã£o": 30,
+      "tipo": "combustao"
+    },
+    {
+      "id": "sba",
+      "descr": "Substituir bateria de arranque",
+      "duraÃ§Ã£o": 30,
+      "tipo": "combustao"
+    },
+    {
+      "id": "svi",
+      "descr": "Substituir velas de incandescencia",
+      "duraÃ§Ã£o": 30,
+      "tipo": "combustao"
+    },
+    {
+      "id": "sfp",
+      "descr": "Substituir filtro de partículas",
+      "duraÃ§Ã£o": 30,
+      "tipo": "combustao"
+    },
+    {
+      "id": "rfp",
+      "descr": "Regenerar filtro de partículas",
+      "duraÃ§Ã£o": 30,
+      "tipo": "combustao"
+    },
+    {
+      "id": "sva",
+      "descr": "Substituir válvula do acelerador",
+      "duraÃ§Ã£o": 30,
+      "tipo": "combustao"
+    },
+    {
+      "id": "svi",
+      "descr": "Substituir velas de ignição",
+      "duraÃ§Ã£o": 30,
+      "tipo": "combustao"
+    },
+    {
+      "id": "adb",
+      "descr": "Avaliar desempenho da bateria",
+      "duraÃ§Ã£o": 30,
+      "tipo": "eletrico"
+    },
+    {
+      "id": "sb",
+      "descr": "Substituir bateria",
+      "duraÃ§Ã£o": 20,
+      "tipo": "eletrico"
+    }
+  ],
+  "vehicle-types": [
+    {
+      "id": "gasolina",
+      "serviÃ§os": [
+        "sp",
+        "cr",
+        "ad",
+        "sct",
+        "mot",
+        "li",
+        "le",
+        "sfah",
+        "mom",
+        "sfo",
+        "sfc",
+        "sfam",
+        "scc",
+        "sba",
+        "sva",
+        "svi"
+      ]
+    },
+    {
+      "id": "gasoleo",
+      "serviÃ§os": [
+        "sp",
+        "cr",
+        "ad",
+        "sct",
+        "mot",
+        "li",
+        "le",
+        "sfah",
+        "mom",
+        "sfo",
+        "sfc",
+        "sfam",
+        "scc",
+        "sba",
+        "svi",
+        "sfp",
+        "rfp"
+      ]
+    },
+    {
+      "id": "eletrico",
+      "serviÃ§os": [
+        "sp",
+        "cr",
+        "ad",
+        "sct",
+        "mot",
+        "li",
+        "le",
+        "sfah",
+        "adb",
+        "sb"
+      ]
+    },
+    {
+      "id": "hibrido",
+      "serviÃ§os": [
+        "sp",
+        "cr",
+        "ad",
+        "sct",
+        "mot",
+        "li",
+        "le",
+        "sfah",
+        "mom",
+        "sfo",
+        "sfc",
+        "sfam",
+        "scc",
+        "sba",
+        "sva",
+        "svi",
+        "adb",
+        "sb"
+      ]
+    }
+  ],
+  "clients": [
+    {
+      "id": "123",
+      "nome": "João Silva",
+      "email": "js@imail.com",
+      "telefone": "912345678"
+    },
+    {
+      "id": "124",
+      "nome": "Maria Santos",
+      "email": "jms@imail.com",
+      "telefone": "912345679"
+    },
+    {
+      "id": "125",
+      "nome": "João Pereira",
+      "email": "jp@imail.com",
+      "telefone": "912345680"
+    }
+  ],
+  "mecanicos": [
+    {
+      "id": "1",
+      "nome": "Pedro Alberto",
+      "email": "jpAs@imail.com",
+      "telefone": "123456756",
+      "posto": "1",
+      "palavraPasse": "123"
+    },
+    {
+      "id": "2",
+      "nome": "Maria Gomes",
+      "email": "jms@imail.com",
+      "telefone": "912332679",
+      "posto": "2",
+      "palavraPasse": "123"
+    },
+    {
+      "id": "3",
+      "nome": "Antonio Pereira",
+      "email": "ap@imail.com",
+      "telefone": "912321680",
+      "posto": "3",
+      "palavraPasse": "123"
+    },
+    {
+      "id": "4",
+      "nome": "Simao Pedro Loureiro",
+      "email": "spl@imail.com",
+      "telefone": "912378680",
+      "posto": "4",
+      "palavraPasse": "123"
+    }
+  ],
+  "postos": [
+    {
+      "id": "1",
+      "nome": "combustao"
+    },
+    {
+      "id": "2",
+      "nome": "eletrico"
+    },
+    {
+      "id": "3",
+      "nome": "hibrido"
+    },
+    {
+      "id": "4",
+      "nome": "universal"
+    }
+  ],
+  "vehicles": [
+    {
+      "id": "08-25-AA",
+      "clientId": "123",
+      "vehicle-typeId": "gasolina",
+      "cilindrada": 1000,
+      "kms": 200000
+    },
+    {
+      "id": "AH-31-BB",
+      "clientId": "124",
+      "vehicle-typeId": "gasoleo",
+      "cilindrada": 2000,
+      "kms": 120000
+    },
+    {
+      "id": "AH-32-44",
+      "clientId": "123",
+      "vehicle-typeId": "eletrico",
+      "potencia": 200,
+      "kms": 20000
+    },
+    {
+      "id": "AH-21-25",
+      "clientId": "125",
+      "vehicle-typeId": "hibrido",
+      "cilindrada": 1000,
+      "potencia": 200,
+      "kms": 80000
+    }
+  ],
+  "services": [
+    {
+      "id": "s31",
+      "vehicleId": "08-25-AA",
+      "service-definitionId": "sp",
+      "estado": "realizado",
+      "agendamento": "filaDeEspera",
+      "descriÃ§Ã£o": "Colocar XPTO 225R15"
+    },
+    {
+      "id": "s32",
+      "vehicleId": "AH-31-BB",
+      "service-definitionId": "li",
+      "estado": "realizado",
+      "agendamento": "programado",
+      "data": {
+        "dia": 26,
+        "mes": 3,
+        "ano": 2024,
+        "hora": 14,
+        "minutos": 15
+      },
+      "descriÃ§Ã£o": "AtenÃ§Ã£o ao banco do condutor.",
+      "startTime": {
+        "hora": 20,
+        "minutos": 36
+      },
+      "orderedParts": "pneuxpto",
+      "finalTime": {
+        "dia": 27,
+        "mes": 4,
+        "ano": 2024,
+        "hora": 20,
+        "minutos": 36
+      },
+      "orderedServices": "para a proxima, emncomendar pneus com antecedência"
+    },
+    {
+      "id": "s33",
+      "vehicleId": "AH-32-44",
+      "service-definitionId": "le",
+      "estado": "realizado",
+      "agendamento": "filaDeEspera",
+      "descriÃ§Ã£o": "Ver jantes."
+    },
+    {
+      "id": "s34",
+      "vehicleId": "AH-21-25",
+      "service-definitionId": "sfc",
+      "estado": "realizado",
+      "agendamento": "filaDeEspera",
+      "descriÃ§Ã£o": "Falta o filtro.",
+      "startTime": {
+        "hora": 19,
+        "minutos": 44
+      },
+      "orderedParts": "pneus apto",
+      "finalTime": {
+        "dia": 29,
+        "mes": 4,
+        "ano": 2024,
+        "hora": 19,
+        "minutos": 45
+      },
+      "orderedServices": "nao esquecer encomendar pneus"
+    },
+    {
+      "id": "s12",
+      "vehicleId": "08-25-AA",
+      "service-definitionId": "sp",
+      "estado": "realizado",
+      "agendamento": "filaDeEspera",
+      "descriÃ§Ã£o": "Colocar XPTO 225R15"
+    },
+    {
+      "id": "s24",
+      "vehicleId": "08-25-AA",
+      "service-definitionId": "li",
+      "estado": "realizado",
+      "agendamento": "programado",
+      "data": {
+        "dia": 2,
+        "mes": 2,
+        "ano": 2024,
+        "hora": 14,
+        "minutos": 15
+      },
+      "descriÃ§Ã£o": "shampoo XPTO"
+    }
+  ]
+}

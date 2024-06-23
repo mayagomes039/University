@@ -1,0 +1,158 @@
+@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model HB_LI4.Models.Cliente
+@{
+    ViewData["Title"] = "Registo no site";
+}
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heritage Bids |  Efetuar Registo</title>
+</head>
+
+<style>
+    {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+    }
+
+body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-image: url('../css/scenarium-antique-mesa.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin: 0;
+        font-family: 'Arial', sans-serif;
+}
+
+.row {
+        width: 550px;
+        background: rgb(82, 88, 71);
+        color: white;
+        border-radius: 10px;
+        padding: 10px 100px 40px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+}
+
+.row img {
+        width: 140px;
+        height: 101px;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+}
+
+.row h1 {
+        font-size: 25px;
+        text-align: center;
+        position: relative;
+        top: 20px
+}
+
+.row .form-group {
+        position: relative;
+        width: 100%;
+        height: 50px;
+        margin: 30px 0;
+        font-family: 'Arial', sans-serif;
+}
+
+.form-group .asp-for {
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        border: none;
+        outline: none;
+        border: 2px solid rgba(255, 255, 255, .2);
+        border-radius: 100 px;
+        font-size: 16px;
+        color: #fff;
+        border-radius: 10px;
+        padding: 20px 45px 20px 20px;
+}
+
+    .form-group .asp-for:hover {
+            background: #ccc;
+            color: #fff;
+    }
+
+    .row .btn.btn-primary {
+        width: 100%;
+        height: 40px;
+        background: #fff;
+        border: none;
+        outline: none;
+        border-radius: 40px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        font-size: 20px;
+        color: #333;
+        font-weight: 800;
+        margin-top: 20px;
+    }
+
+        .row .btn.btn-primary:hover {
+            background: #ccc;
+            color: #fff;
+        }
+
+.login-link p a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+}
+
+    .login-link p a:hover {
+        text-decoration: underline
+    }
+
+</style>
+
+<body>
+<div class="row">
+    <h1>Registo</h1>
+    <img src="../css/HeritageBids.png">
+
+        <form asp-action="Create" asp-controller="Cliente">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+                
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="PalavraPasse"></label>
+                <input asp-for="PalavraPasse" type="password" class="form-control" />
+                <span asp-validation-for="PalavraPasse" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="Telemovel" class="control-label"></label>
+                <input asp-for="Telemovel" class="form-control" />
+                <span asp-validation-for="Telemovel" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Concluir Registo</button>
+    </form>
+        <div class="login-link" style="text-align: center">
+            <p>Voltar <a asp-controller="Login">atrás</a></p>
+        </div>
+</div>
+</body>

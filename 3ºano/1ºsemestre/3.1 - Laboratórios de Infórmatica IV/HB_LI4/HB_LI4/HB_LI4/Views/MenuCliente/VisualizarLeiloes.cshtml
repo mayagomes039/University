@@ -1,0 +1,157 @@
+@model HB_LI4.Controllers.LeilaoCategoriaViewModel
+
+@{
+    ViewData["Title"] = "Visualizar leiloes";
+}
+
+
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgb(52, 58, 48);
+        padding: 10px;
+        margin: 0;
+    }
+    
+    .wrapper {
+        width: calc(95% - 20px);
+        background: rgb(82, 86, 65);
+        color: white;
+        border-radius: 10px;
+        padding: 30px 40px;
+        margin: 10px;
+        font-size: 18px;
+        overflow-x: auto;
+    }
+    
+    .logo {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 100px;
+        height: auto;
+    }
+    
+    form {
+        margin-bottom: 20px;
+    }
+    
+    .leilao-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 20px;
+    }
+    
+    .leilao-item-details {
+        flex: 1;
+        margin-right: 20px;
+    }
+    
+    .leilao-image {
+        max-width: 200px;
+        max-height: 200px;
+    }
+    
+    .leilao-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .delete-link {
+        color: red;
+        text-decoration: none; 
+    }
+    
+    .action-links {
+        display: flex;
+        margin-top: 10px;
+    }
+    
+    .action-links a {
+        margin-right: 10px;
+        color: wheat;
+        text-decoration: none;
+    }
+    .leilao-container {
+            width: 48%; 
+            margin-bottom: 20px; 
+            margin-right: 2%; 
+            float: left; 
+        }
+    
+        .leilao-item-container {
+            background-color: rgb(82, 86, 65);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+        }
+        
+</style>
+
+<body>
+    <h1 style="color: white; font-weight: bold;"> Visualizar Leilões</h1>
+    
+    <img src="../css/HeritageBidsno.png" alt="Logo" class="logo">
+
+    <div>
+        <a asp-action="Index" style="color: white; text-decoration: none;font-size: 20px;margin-left: 800px">
+            Voltar ao Menu Principal
+            <span style="color: wheat; margin-left: 5px; text-decoration: none; cursor: pointer;font-size: 22px;">AQUI</span>
+        </a>
+    </div>
+    
+    <form asp-controller="MenuCliente" asp-action="VisualizarLeiloes" method="get">
+        <p>
+            <select asp-for="Categoria" asp-items="Model.Categorias">
+                <option value="">All</option>
+            </select>
+    
+            <label for="PrecoMaximo" style="color: white;">Preço Máximo:</label>
+            <input type="number" asp-for="PrecoMaximo" />
+    
+            <input type="submit" value="Filter" />
+        </p>
+    </form>
+    
+    <div class="wrapper">
+            <h4>Leilão</h4>
+            <hr />
+            @foreach (var item in Model.Leiloes) {
+                <div class="leilao-container">
+                    <h4>Leilão</h4> 
+                    <div class="leilao-item-container"> 
+                        <div class="leilao-item">
+                            <div class="leilao-item-details">
+                                <p>Preço Inicial: @item.PrecoInicial</p>
+                                <p>Preço Final: @item.PrecoFinal</p>
+                                <p>Nome: @item.Nome</p>
+                                <p>Data Início: @item.DataInicio</p>
+                                <p>Data Fim: @item.DataFim</p>
+                                <p>Categoria: @(item.Categoria != null ? item.Categoria.Nome : "N/A")</p>
+                                
+                                <div class="action-links">
+                                    <a asp-action="Create" asp-controller="Lance" asp-route-id="@item.ID">Efetuar Lance</a>
+                                </div>
+                            </div>
+                            <div class="leilao-image">
+                                @if (item.Imagem != null && item.Imagem.Length > 0)
+                                {
+                                    <img src="data:image;base64,@Convert.ToBase64String(item.Imagem)" alt="Imagem do leilão" />
+                                }
+                                else
+                                {
+                                    <span>Nenhuma imagem disponível</span>
+                                }
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            }
+            <div style="clear: both;"></div> 
+        </div>
+</body>

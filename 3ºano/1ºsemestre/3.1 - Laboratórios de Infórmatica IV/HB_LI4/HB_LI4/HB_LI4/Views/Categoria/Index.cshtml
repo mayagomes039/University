@@ -1,0 +1,94 @@
+@model IEnumerable<HB_LI4.Models.Categoria>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<style>
+
+    {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+    }
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-image: url('../css/scenarium-antique-mesa.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin: 0;
+        font-family: 'Arial', sans-serif;
+    }
+
+
+    .wrapper {
+        width: 420px;
+        background: rgb(82, 88, 71);
+        color: white;
+        border-radius: 10px;
+        padding: 30px 40px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    .link-overlay,
+    p a.link-overlay {
+        color: white;
+    }
+
+    .table {
+    
+      color : white;
+    }
+
+</style>
+<body>
+
+    <div class="wrapper">
+        <h1>Index</h1>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nome)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+                        <td>
+                            <a class="link-overlay" asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                            <a class="link-overlay" asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                            <a class="link-overlay" asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                        </td>
+                    </tr>
+                }
+
+              
+
+            </tbody>
+
+        </table>
+        <div>
+            <a class="link-overlay" asp-controller="Menu" asp-action="GerirCategorias">Voltar para Gerir Categorias</a>
+        </div>
+
+    </div>
+</body>
+

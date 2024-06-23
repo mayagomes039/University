@@ -1,0 +1,65 @@
+@model int
+@{
+    ViewData["Title"] = "Pagamento";
+}
+
+
+<style>
+    body {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        flex-wrap: wrap;
+        background: rgb(52, 58, 48);
+        padding: 10px;
+        transform: (0% ,20%);
+        color: white;
+    }
+
+    .wrapper {
+        width: calc(50% - 20px);
+        background: rgb(82, 86, 65);
+        color: white;
+        border-radius: 10px;
+        padding: 30px 40px;
+        margin: 10px;
+        text-align: center;
+        font-size: 18px;
+        position: center;
+        
+    }
+
+    .logo {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        width: 100px;
+        height: auto;
+    }
+</style>
+
+<h1 style="color: white; font-weight: bold;"> Pagamento</h1>
+
+<body>
+
+    <img srcset="../css/HeritageBidsno.png" alt="Logo" class="logo">
+    <div>
+
+        <a asp-action="Index" style="color: white; text-decoration: none;font-size: 20px;margin-left: 75%">
+            Voltar ao Menu Principal
+            <span style="color: wheat; margin-left: 5px; text-decoration: none; cursor: pointer;font-size: 22px;">AQUI</span>
+        </a>
+    </div>
+
+    <form method="post" action="@Url.Action("ConfirmarPagamento", "MenuCliente", new { mensagemId = Model})">
+        <label>Escolha a forma de pagamento:</label>
+        <div>
+            <input type="radio" name="formaPagamento" value="PagarNaLoja" checked /> Pagar na Loja<br />
+            <input type="radio" name="formaPagamento" value="Multibanco" /> Multibanco<br />
+            <input type="radio" name="formaPagamento" value="MBWay" /> MBWay<br />
+        </div>
+    
+        <button type="submit">Continuar</button>
+    </form>
+    
+    </body>

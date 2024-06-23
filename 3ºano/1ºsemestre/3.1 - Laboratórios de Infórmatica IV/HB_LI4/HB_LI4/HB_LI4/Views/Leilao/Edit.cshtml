@@ -1,0 +1,107 @@
+@model HB_LI4.Models.Leilao
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-image: url('/css/scenarium-antique-mesa.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin: 0;
+        font-family: 'Arial', sans-serif;
+    }
+
+    .wrapper {
+        width: 420px;
+        background: rgb(82, 88, 71);
+        color: white;
+        border-radius: 10px;
+        padding: 30px;
+        text-align: center;
+        margin: 0 auto; /* Centralizar horizontalmente */
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="tel"] {
+        width: calc(100% - 20px);
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        width: calc(100% - 20px);
+    }
+</style>
+
+<div class="wrapper">
+    <h1>Edit</h1>
+    <h4>Leilão</h4>
+    <hr />
+    <form asp-action="Edit" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="ID" />
+        <div class="form-group">
+            <label asp-for="PrecoInicial" class="control-label"></label>
+            <input asp-for="PrecoInicial" class="form-control" step="any" />
+            <span asp-validation-for="PrecoInicial" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="PrecoFinal" class="control-label"></label>
+            <input asp-for="PrecoFinal" class="form-control" step="any"/>
+            <span asp-validation-for="PrecoFinal" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Nome" class="control-label"></label>
+            <input asp-for="Nome" class="form-control" />
+            <span asp-validation-for="Nome" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="DataInicio" class="control-label"></label>
+            <input asp-for="DataInicio" class="form-control" />
+            <span asp-validation-for="DataInicio" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="DataFim" class="control-label"></label>
+            <input asp-for="DataFim" class="form-control" />
+            <span asp-validation-for="DataFim" class="text-danger"></span>
+        </div>
+         <div class="form-group">
+                                <label asp-for="CategoriaID" class="control-label"></label>
+                                <select asp-for="CategoriaID" asp-items="@ViewBag.Categorias" class="form-control">
+                                    <option value="">Selecione a Categoria</option>
+                                </select>
+                                <span asp-validation-for="CategoriaID" class="text-danger"></span>
+                            </div>
+        <div class="form-group">
+                                <label asp-for="Imagem" class="control-label"></label>
+                                <input type="file" asp-for="Imagem" class="form-control" />
+                                <span asp-validation-for="Imagem" class="text-danger"></span>
+                            </div>
+
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary" />
+        </div>
+    </form>
+    <div>
+        <a asp-controller="Menu" asp-action="Index">Voltar ao Menu Principal</a>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

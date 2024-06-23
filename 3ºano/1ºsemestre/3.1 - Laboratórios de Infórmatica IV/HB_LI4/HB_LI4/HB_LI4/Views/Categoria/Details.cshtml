@@ -1,0 +1,68 @@
+@model HB_LI4.Models.Categoria
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<style>
+
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-image: url('/css/scenarium-antique-mesa.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin: 0;
+        font-family: 'Arial', sans-serif;
+    }
+
+
+    .wrapper {
+        width: 420px;
+        background: rgb(82, 88, 71);
+        color: white;
+        border-radius: 10px;
+        padding: 30px 40px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    .link-overlay,
+    p a.link-overlay {
+        color: white;
+    }
+</style>
+<body>
+    <div class="wrapper">
+
+        <h1>Details</h1>
+
+        <div>
+            <h4>Categoria</h4>
+            <hr />
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Nome)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Nome)
+                </dd>
+            </dl>
+        </div>
+        <div>
+            <a class="link-overlay" asp-action="Edit" asp-route-id="@Model?.ID">Edit</a>
+
+
+            <div>
+                <a class="link_overlay" asp-controller="Menu" asp-action="GerirCategorias">Voltar para Gerir Categorias</a>
+            </div>
+        </div>
+    </div>
+</body>

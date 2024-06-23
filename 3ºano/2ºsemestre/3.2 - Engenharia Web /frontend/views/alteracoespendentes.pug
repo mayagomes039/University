@@ -1,0 +1,144 @@
+doctype html
+html
+    head
+        title Alterações Pendentes
+        link(rel='stylesheet', href='/stylesheets/w3.css')
+        link(rel="icon" href="/images/favicon.png" type="image/png")
+        style.
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+                background-color: #f0f0f5;
+            }
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: white;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            .container:hover {
+                transform: scale(1.02);
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            }
+            .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 20px;
+            }
+            .header button {
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 4px 2px;
+                cursor: pointer;
+                border-radius: 4px;
+                transition: background-color 0.3s ease, transform 0.3s ease;
+            }
+            .header button:hover {
+                background-color: #45a049;
+                transform: translateY(-2px);
+            }
+            .section {
+                margin-bottom: 40px;
+                padding: 20px;
+                background-color: #f9f9f9;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            }
+            .section:hover {
+                background-color: #f1f1f1;
+                box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+            }
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-top: 20px;
+                transition: transform 0.3s ease;
+            }
+            th, td {
+                padding: 12px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+                transition: background-color 0.3s ease, color 0.3s ease;
+            }
+            th {
+                background-color: #f2f2f2;
+            }
+            tr:hover td {
+                background-color: #e9e9e9;
+                color: #333;
+            }
+            a {
+                color: #2196F3;
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+            a:hover {
+                color: #0b7dda;
+            }
+            .button-add {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+            }
+            .button-view {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+            }
+    body
+        .container
+            .header
+                button(onclick="window.history.back()") Voltar a página anterior
+            .section
+                table.w3-table.w3-striped
+                    thead
+                        tr
+                            th Nome
+                            th Rua
+                            th Descrição
+                            th Casas
+                            th Figuras 
+                            th Ações
+                    tbody
+                        each alteracao in alteracoes
+                            tr
+                                td #{alteracao.nome}
+                                td #{alteracao.rua}
+                                td(style="width: 50%;").
+                                    #{alteracao.descricao}
+                                td
+                                    each casa in alteracao.casas
+                                        div
+                                            p Enfiteutas: #{casa.enfiteutas}
+                                            p Foro: #{casa.foro}
+                                            p Descrições: #{casa.desc}
+                                            p Vista: #{casa.vista}
+                                td
+                                    each figura in alteracao.figuras
+                                        div
+                                            p ID: #{figura.id}
+                                            img(src=figura.imagem, alt='Imagem de figura', style='max-width: 200px; max-height: 200px;')
+                                            p Legenda: #{figura.legenda}
+                                td 
+                                    button(onclick="window.location.href='/alteracoespendentes/validar/" + alteracao._id + "'") Validar
+                                    br
+                                    br
+                                    button(onclick="window.location.href='/alteracoespendentes/eliminar/" + alteracao._id + "'") Rejeitar
+        
+        script(type="text/javascript").
+            window.addEventListener('load', function() {
+                if ("#{aviso}" != "") {
+                    alert("#{aviso}");
+                }
+            })

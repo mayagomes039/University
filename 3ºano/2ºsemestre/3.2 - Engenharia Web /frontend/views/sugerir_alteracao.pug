@@ -1,0 +1,115 @@
+doctype html
+html
+    head
+        title Sugestão de Alteração
+        link(rel='stylesheet', href='/stylesheets/w3.css')
+        link(rel="icon" href="/images/favicon.png" type="image/png")
+
+        style.
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+                background-color: #f0f0f5;
+            }
+            form {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: white;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            label {
+                font-weight: bold;
+                display: block;
+                margin: 10px 0 5px;
+            }
+            input[type="text"] {
+                width: calc(100% - 22px);
+                padding: 10px;
+                margin-bottom: 10px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+            button {
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                margin: 10px 2px;
+                cursor: pointer;
+                border-radius: 4px;
+                transition: background-color 0.3s ease, transform 0.3s ease;
+            }
+            button:hover {
+                background-color: #45a049;
+                transform: translateY(-2px);
+            }
+            .container {
+                margin-bottom: 20px;
+            }
+        script.
+            function adicionarCasa() {
+                var casaContainer = document.getElementById('casas-container');
+                var novaCasa = document.createElement('div');
+                novaCasa.className = 'container';
+                novaCasa.innerHTML = 
+                    '<label for="novaCasa">Casa:</label>' +
+                    '<input type="text" name="novoenfiteutas" placeholder="Enfiteutas">' +
+                    '<input type="text" name="novoforo" placeholder="Foro">' +
+                    '<input type="text" name="novodesc" placeholder="Descrição">' +
+                    '<input type="text" name="novavista" placeholder="Vista">';
+                casaContainer.appendChild(novaCasa);
+            }
+
+            function adicionarFigura() {
+                var figuraContainer = document.getElementById('figuras-container');
+                var novaFigura = document.createElement('div');
+                novaFigura.className = 'container';
+                novaFigura.innerHTML = 
+                    '<label for="novaFigura">Figura:</label>' +
+                    '<input type="text" name="novafiguraid" placeholder="ID">' +
+                    '<input type="text" name="novafiguraimagem" placeholder="Imagem">' +
+                    '<input type="text" name="novafiguralegenda" placeholder="Legenda">';
+                figuraContainer.appendChild(novaFigura);
+            }
+    body
+        form(method="POST", action=`/alteracoespendentes/adicionar`)
+            label(for="novoNome") Nome:
+            input(type="text", id="novoNome", name="nome", value=rua.nome)
+            br
+
+            label(for="novaRua") Rua:
+            input(type="text", id="novaRua", name="rua", value=rua.rua)
+            br
+
+            label(for="novaDescricao") Descrição:
+            input(type="text", id="novaDescricao", name="descricao", value=rua.descricao)
+            br
+
+            div#casas-container
+            each casa, i in rua.casas
+                .container
+                    label(for="novaCasa") Casa:
+                    input(type="text", id="novaCasaEnfiteutas", name=`casas[${i}][enfiteutas]`, value=casa.enfiteutas.join(','))
+                    input(type="text", id="novaCasaForo", name=`casas[${i}][foro]`, value=casa.foro)
+                    input(type="text", id="novaCasaDesc", name=`casas[${i}][desc]`, value=casa.desc.join(','))
+                    input(type="text", id="novaCasaVista", name=`casas[${i}][vista]`, value=casa.vista)
+
+            br
+
+            div#figuras-container
+            each figura, j in rua.figuras
+                .container
+                    label(for="novaFigura") Figura:
+                    input(type="text", id=`novaFiguraId${j}`, name=`figuras[${j}][id]`, value=figura.id)
+                    input(type="text", id=`novaFiguraImagem${j}`, name=`figuras[${j}][imagem]`, value=figura.imagem)
+                    input(type="text", id=`novaFiguraLegenda${j}`, name=`figuras[${j}][legenda]`, value=figura.legenda)
+
+            br
+
+            button(type="submit") Submeter Alterações
