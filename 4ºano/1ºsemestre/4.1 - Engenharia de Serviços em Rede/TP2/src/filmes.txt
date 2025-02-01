@@ -1,0 +1,2 @@
+movie.Mjpeg;/media/sf_ESR_TP2/src/movie.Mjpeg
+movieCopy.Mjpeg;/media/sf_ESR_TP2/src/movieCopy.Mjpeg
