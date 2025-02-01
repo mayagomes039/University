@@ -1,0 +1,149 @@
+##
+# You should look at the following URL's in order to grasp a solid understanding
+# of Nginx configuration files in order to fully unleash the power of Nginx.
+# https://www.nginx.com/resources/wiki/start/
+# https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/
+# https://wiki.debian.org/Nginx/DirectoryStructure
+#
+# In most cases, administrators will remove this file from sites-enabled/ and
+# leave it as reference inside of sites-available where it will continue to be
+# updated by the nginx packaging team.
+#
+# This file will automatically load configuration files provided by other
+# applications, such as Drupal or Wordpress. These applications will be made
+# available underneath a path with that package name, such as /drupal8.
+#
+# Please see /usr/share/doc/nginx-doc/examples/ for more detailed examples.
+##
+
+# Default server configuration
+upstream minio_s3 {
+   least_conn;
+   server localhost:9000;
+}
+
+upstream minio_console {
+   least_conn;
+   server localhost:9001;  
+}
+
+upstream websockets {
+   least_conn;
+   server localhost:8080;  
+}
+
+
+
+server {
+   listen       80;
+   listen  [::]:80;
+   server_name  l.primecog.com/
+
+   # Allow special characters in headers
+   ignore_invalid_headers off;
+   # Allow any size file to be uploaded.
+   # Set to a value such as 1000m; to restrict file size to a specific value
+   client_max_body_size 0;
+   # Disable buffering
+   proxy_buffering off;
+   proxy_request_buffering off;
+
+    location / {
+        proxy_pass http://localhost:2999; # Porta do WebServer
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+	proxy_set_header X-Real-IP $remote_addr;
+	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+	proxy_set_header X-Forwarded-Host $server_name;
+	proxy_set_header Cookie $http_cookie;
+    }
+
+# Rota para a Web API
+    location /api/ {
+	proxy_pass http://localhost:3000;  # API server
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+        if ($request_method = 'OPTIONS') {
+          add_header 'Access-Control-Allow-Origin' '*' always;
+          add_header 'Access-Control-Allow-Methods' 'GET, PUT, DELETE, POST, OPTIONS' always;
+	    }
+    }
+
+# WebSocket proxy configuration
+location /ws/ {
+    # redirect all HTTP traffic to localhost:8080
+    proxy_pass http://localhost:8080;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+    # WebSocket support
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+
+    # Disable caching
+    proxy_cache off;
+
+    # Increase timeouts to prevent connection drops
+    proxy_read_timeout 3600s;
+    proxy_send_timeout 3600s;
+
+    # Prevent buffering for WebSocket
+    proxy_buffering off;
+}
+
+
+## MinIO S3 API connection
+   location /s3/ {
+      rewrite ^/s3/(.*) /$1 break;
+      proxy_set_header Host $http_host;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $scheme;
+
+      proxy_connect_timeout 300;
+      # Default is HTTP/1, keepalive is only enabled in HTTP/1.1
+      proxy_http_version 1.1;
+      proxy_set_header Connection "";
+      chunked_transfer_encoding off;
+
+      proxy_pass http://localhost:9000; # This uses the upstream directive definition to load balance
+   }
+
+## MINUI Dashboard - REMOVE ON PRODUTION
+   location /minio/ui/ {
+      rewrite ^/minio/ui/(.*) /$1 break;
+      proxy_set_header Host $http_host;
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header X-Forwarded-Proto $scheme;
+      proxy_set_header X-NginX-Proxy true;
+
+      # This is necessary to pass the correct IP to be hashed
+      real_ip_header X-Real-IP;
+
+      proxy_connect_timeout 300;
+
+      # To support websockets in MinIO versions released after January 2023
+      proxy_http_version 1.1;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection "upgrade";
+      # Some environments may encounter CORS errors (Kubernetes + Nginx Ingress)
+      # Uncomment the following line to set the Origin request to an empty string
+      # proxy_set_header Origin '';
+
+      chunked_transfer_encoding off;
+
+      proxy_pass http://localhost:9001; # This uses the upstream directive definition to load balance
+   }
+}

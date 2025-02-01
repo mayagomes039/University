@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  websocket-server:
+    build:
+      context: .  # Aponta para o diretório atual (onde está o Dockerfile)
+    container_name: ws-gateway
+    ports:
+      - "8080:8080"  # Expõe a porta 8080 para comunicação
+    environment:
+      - NODE_ENV=production  # Definir o ambiente como produção
+    networks:
+      - websocket-network
+
+networks:
+  websocket-network:
+    driver: bridge  # Rede padrão do Docker

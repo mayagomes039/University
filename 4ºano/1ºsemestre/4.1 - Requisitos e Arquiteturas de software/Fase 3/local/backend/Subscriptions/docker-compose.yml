@@ -1,0 +1,11 @@
+services:
+    postgres:
+        image: postgres
+        environment:
+            POSTGRES_USER: subscription
+            POSTGRES_PASSWORD: subscription
+            POSTGRES_DB: subscription
+        ports:
+        - "5435:5432"
+        
+        

@@ -1,0 +1,36 @@
+{
+  "devDependencies": {
+    "@types/adm-zip": "^0.5.7",
+    "@types/amqplib": "^0.10.6",
+    "@types/archiver": "^6.0.3",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/multer": "^1.4.12",
+    "@types/node": "^22.10.5",
+    "@types/uuid": "^10.0.0",
+    "@types/ws": "^8.5.13",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.726.1",
+    "adm-zip": "^0.5.16",
+    "amqplib": "^0.10.5",
+    "archiver": "^7.0.1",
+    "axios": "^1.7.9",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "multer": "^1.4.5-lts.1",
+    "pg": "^8.13.1",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.20",
+    "typeorm-naming-strategies": "^4.1.0",
+    "ws": "^8.18.0"
+  },
+  "scripts": {
+    "dev": "ts-node src/server.ts",
+    "migrate": "npx tsx src/db/migrate.ts"
+  }
+}

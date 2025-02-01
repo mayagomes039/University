@@ -1,0 +1,368 @@
+services:
+  # IMAGE  SERVICES
+  #RABBIT MQ
+  rabbitmq:
+    image: rabbitmq:4-management-alpine
+    container_name: rabbitmq
+    hostname: 'rabbitmq'
+    restart: always
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASS}
+    networks:
+      - rabbit-network
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq  # Persistent data storage
+      - rabbitmq_logs:/var/log/rabbitmq  # Optional: Log storage
+    healthcheck:
+      test: rabbitmq-diagnostics check_port_connectivity
+      interval: 30s
+      timeout: 15s
+      retries: 10
+
+  # MinIO as S3 SelfHosted for development
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    restart: always
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    networks:
+      - rabbit-network
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+    volumes:
+      - ~/minio/data:/data
+    command: server /data --console-address ":9001"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 15s
+      retries: 10
+
+  # Deploy Script
+  deployscript:
+    build: ./deployScript/
+    container_name: deploy-script
+    restart: always
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=${RABBITMQ_PORT_INTERNAL}
+      - RABBITMQ_USER=${RABBITMQ_USER}
+      - RABBITMQ_PASS=${RABBITMQ_PASS}
+      - PICTURAS_LOG_LEVEL=${PICTURAS_LOG_LEVEL}
+      - S3_ENDPOINT_URL=${S3_ENDPOINT_URL}
+      - S3_ACCESS_KEY=${S3_ACCESS_KEY}
+      - S3_SECRET_KEY=${S3_SECRET_KEY}
+      - S3_USE_SSL=${S3_USE_SSL}
+      - S3_BUCKET_NAME=${S3_BUCKET_NAME:-my-bucket} 
+    networks:
+      - rabbit-network
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+    command: sh -c "python3 ./main.py"
+
+  #Original Watermark Tool - ms
+  watermark-tool-ms:
+    build:
+      context: ../picturas_watermark_tool_ms/
+      dockerfile: Dockerfile
+      args:
+        SERVICE_NAME: picturas_watermark_tool_ms
+    container_name: watermark-tool-ms
+    restart: always
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=${RABBITMQ_PORT_INTERNAL}
+      - RABBITMQ_USER=${RABBITMQ_USER}
+      - RABBITMQ_PASS=${RABBITMQ_PASS}
+      - RABBITMQ_REQUESTS_QUEUE_NAME=${RABBITMQ_REQUESTS_QUEUE_WATERMARK}
+      - RABBITMQ_RESULTS_EXCHANGE=${RABBITMQ_RESULTS_EXCHANGE}
+      - RABBITMQ_RESULTS_ROUTING_KEY=${RABBITMQ_RESULTS_ROUTING_KEY}
+      - PICTURAS_MS_NAME=${PICTURAS_MS_NAME_WATERMARK}
+      - PICTURAS_LOG_LEVEL=${PICTURAS_LOG_LEVEL}  
+      - PICTURAS_NUM_THREADS=${PICTURAS_NUM_THREADS}
+      - S3_ENDPOINT_URL=${S3_ENDPOINT_URL}
+      - S3_ACCESS_KEY=${S3_ACCESS_KEY}
+      - S3_SECRET_KEY=${S3_SECRET_KEY}
+      - S3_USE_SSL=${S3_USE_SSL}
+    networks:
+      - rabbit-network
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+
+  #Scale Tool - ms
+  scale-tool-ms:
+    build:
+      context: ../picturas_scale_tool_ms/
+      dockerfile: Dockerfile
+      args:
+        SERVICE_NAME: picturas_scale_tool_ms
+    container_name: scale-tool-ms
+    restart: always
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=${RABBITMQ_PORT_INTERNAL}
+      - RABBITMQ_USER=${RABBITMQ_USER}
+      - RABBITMQ_PASS=${RABBITMQ_PASS}
+      - RABBITMQ_REQUESTS_QUEUE_NAME=${RABBITMQ_REQUESTS_QUEUE_SCALE}
+      - RABBITMQ_RESULTS_EXCHANGE=${RABBITMQ_RESULTS_EXCHANGE}
+      - RABBITMQ_RESULTS_ROUTING_KEY=${RABBITMQ_RESULTS_ROUTING_KEY}
+      - PICTURAS_MS_NAME=${PICTURAS_MS_NAME_SCALE}
+      - PICTURAS_LOG_LEVEL=${PICTURAS_LOG_LEVEL}  
+      - PICTURAS_NUM_THREADS=${PICTURAS_NUM_THREADS}
+      - S3_ENDPOINT_URL=${S3_ENDPOINT_URL}
+      - S3_ACCESS_KEY=${S3_ACCESS_KEY}
+      - S3_SECRET_KEY=${S3_SECRET_KEY}
+      - S3_USE_SSL=${S3_USE_SSL}
+    networks:
+      - rabbit-network
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+
+  #Rotate Tool - ms
+  rotate-tool-ms:
+    build:
+      context: ../picturas_rotate_tool_ms/
+      dockerfile: Dockerfile
+      args:
+        SERVICE_NAME: picturas_rotate_tool_ms
+    container_name: rotate-tool-ms
+    restart: always
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=${RABBITMQ_PORT_INTERNAL}
+      - RABBITMQ_USER=${RABBITMQ_USER}
+      - RABBITMQ_PASS=${RABBITMQ_PASS}
+      - RABBITMQ_REQUESTS_QUEUE_NAME=${RABBITMQ_REQUESTS_QUEUE_ROTATE}
+      - RABBITMQ_RESULTS_EXCHANGE=${RABBITMQ_RESULTS_EXCHANGE}
+      - RABBITMQ_RESULTS_ROUTING_KEY=${RABBITMQ_RESULTS_ROUTING_KEY}
+      - PICTURAS_MS_NAME=${PICTURAS_MS_NAME_ROTATE}
+      - PICTURAS_LOG_LEVEL=${PICTURAS_LOG_LEVEL}  
+      - PICTURAS_NUM_THREADS=${PICTURAS_NUM_THREADS}
+      - S3_ENDPOINT_URL=${S3_ENDPOINT_URL}
+      - S3_ACCESS_KEY=${S3_ACCESS_KEY}
+      - S3_SECRET_KEY=${S3_SECRET_KEY}
+      - S3_USE_SSL=${S3_USE_SSL}
+    networks:
+      - rabbit-network
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+
+  #contrast Tool - ms
+  contrast-tool-ms:
+    build:
+      context: ../picturas_contrast_tool_ms/
+      dockerfile: Dockerfile
+      args:
+        SERVICE_NAME: picturas_contrast_tool_ms
+    container_name: contrast-tool-ms
+    restart: always
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=${RABBITMQ_PORT_INTERNAL}
+      - RABBITMQ_USER=${RABBITMQ_USER}
+      - RABBITMQ_PASS=${RABBITMQ_PASS}
+      - RABBITMQ_REQUESTS_QUEUE_NAME=${RABBITMQ_REQUESTS_QUEUE_CONTRAST}
+      - RABBITMQ_RESULTS_EXCHANGE=${RABBITMQ_RESULTS_EXCHANGE}
+      - RABBITMQ_RESULTS_ROUTING_KEY=${RABBITMQ_RESULTS_ROUTING_KEY}
+      - PICTURAS_MS_NAME=${PICTURAS_MS_NAME_CONTRAST}
+      - PICTURAS_LOG_LEVEL=${PICTURAS_LOG_LEVEL}  
+      - PICTURAS_NUM_THREADS=${PICTURAS_NUM_THREADS}
+      - S3_ENDPOINT_URL=${S3_ENDPOINT_URL}
+      - S3_ACCESS_KEY=${S3_ACCESS_KEY}
+      - S3_SECRET_KEY=${S3_SECRET_KEY}
+      - S3_USE_SSL=${S3_USE_SSL}
+    networks:
+      - rabbit-network
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+
+  #brightness Tool - ms
+  brightness-tool-ms:
+    build:
+      context: ../picturas_brightness_tool_ms/
+      dockerfile: Dockerfile
+      args:
+        SERVICE_NAME: picturas_brightness_tool_ms
+    container_name: brightness-tool-ms
+    restart: always
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=${RABBITMQ_PORT_INTERNAL}
+      - RABBITMQ_USER=${RABBITMQ_USER}
+      - RABBITMQ_PASS=${RABBITMQ_PASS}
+      - RABBITMQ_REQUESTS_QUEUE_NAME=${RABBITMQ_REQUESTS_QUEUE_BRIGHTNESS}
+      - RABBITMQ_RESULTS_EXCHANGE=${RABBITMQ_RESULTS_EXCHANGE}
+      - RABBITMQ_RESULTS_ROUTING_KEY=${RABBITMQ_RESULTS_ROUTING_KEY}
+      - PICTURAS_MS_NAME=${PICTURAS_MS_NAME_BRIGHTNESS}
+      - PICTURAS_LOG_LEVEL=${PICTURAS_LOG_LEVEL}  
+      - PICTURAS_NUM_THREADS=${PICTURAS_NUM_THREADS}
+      - S3_ENDPOINT_URL=${S3_ENDPOINT_URL}
+      - S3_ACCESS_KEY=${S3_ACCESS_KEY}
+      - S3_SECRET_KEY=${S3_SECRET_KEY}
+      - S3_USE_SSL=${S3_USE_SSL}
+    networks:
+      - rabbit-network
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+
+  #border Tool - ms
+  border-tool-ms:
+    build:
+      context: ../picturas_border_tool_ms/
+      dockerfile: Dockerfile
+      args:
+        SERVICE_NAME: picturas_border_tool_ms
+    container_name: border-tool-ms
+    restart: always
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=${RABBITMQ_PORT_INTERNAL}
+      - RABBITMQ_USER=${RABBITMQ_USER}
+      - RABBITMQ_PASS=${RABBITMQ_PASS}
+      - RABBITMQ_REQUESTS_QUEUE_NAME=${RABBITMQ_REQUESTS_QUEUE_BORDER}
+      - RABBITMQ_RESULTS_EXCHANGE=${RABBITMQ_RESULTS_EXCHANGE}
+      - RABBITMQ_RESULTS_ROUTING_KEY=${RABBITMQ_RESULTS_ROUTING_KEY}
+      - PICTURAS_MS_NAME=${PICTURAS_MS_NAME_BORDER}
+      - PICTURAS_LOG_LEVEL=${PICTURAS_LOG_LEVEL}  
+      - PICTURAS_NUM_THREADS=${PICTURAS_NUM_THREADS}
+      - S3_ENDPOINT_URL=${S3_ENDPOINT_URL}
+      - S3_ACCESS_KEY=${S3_ACCESS_KEY}
+      - S3_SECRET_KEY=${S3_SECRET_KEY}
+      - S3_USE_SSL=${S3_USE_SSL}
+    networks:
+      - rabbit-network
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+
+  #crop Tool - ms
+  crop-tool-ms:
+    build:
+      context: ../picturas_crop_tool_ms/
+      dockerfile: Dockerfile
+      args:
+        SERVICE_NAME: picturas_crop_tool_ms
+    container_name: crop-tool-ms
+    restart: always
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=${RABBITMQ_PORT_INTERNAL}
+      - RABBITMQ_USER=${RABBITMQ_USER}
+      - RABBITMQ_PASS=${RABBITMQ_PASS}
+      - RABBITMQ_REQUESTS_QUEUE_NAME=${RABBITMQ_REQUESTS_QUEUE_CROP}
+      - RABBITMQ_RESULTS_EXCHANGE=${RABBITMQ_RESULTS_EXCHANGE}
+      - RABBITMQ_RESULTS_ROUTING_KEY=${RABBITMQ_RESULTS_ROUTING_KEY}
+      - PICTURAS_MS_NAME=${PICTURAS_MS_NAME_CROP}
+      - PICTURAS_LOG_LEVEL=${PICTURAS_LOG_LEVEL}  
+      - PICTURAS_NUM_THREADS=${PICTURAS_NUM_THREADS}
+      - S3_ENDPOINT_URL=${S3_ENDPOINT_URL}
+      - S3_ACCESS_KEY=${S3_ACCESS_KEY}
+      - S3_SECRET_KEY=${S3_SECRET_KEY}
+      - S3_USE_SSL=${S3_USE_SSL}
+    networks:
+      - rabbit-network
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+
+  #removebg Tool - ms
+  removebg-tool-ms:
+    build:
+      context: ../picturas_removebg_tool_ms/
+      dockerfile: Dockerfile
+      args:
+        SERVICE_NAME: picturas_removebg_tool_ms
+    container_name: removebg-tool-ms
+    restart: always
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=${RABBITMQ_PORT_INTERNAL}
+      - RABBITMQ_USER=${RABBITMQ_USER}
+      - RABBITMQ_PASS=${RABBITMQ_PASS}
+      - RABBITMQ_REQUESTS_QUEUE_NAME=${RABBITMQ_REQUESTS_QUEUE_REMOVEBG}
+      - RABBITMQ_RESULTS_EXCHANGE=${RABBITMQ_RESULTS_EXCHANGE}
+      - RABBITMQ_RESULTS_ROUTING_KEY=${RABBITMQ_RESULTS_ROUTING_KEY}
+      - PICTURAS_MS_NAME=${PICTURAS_MS_NAME_REMOVEBG}
+      - PICTURAS_LOG_LEVEL=${PICTURAS_LOG_LEVEL}  
+      - PICTURAS_NUM_THREADS=${PICTURAS_NUM_THREADS}
+      - S3_ENDPOINT_URL=${S3_ENDPOINT_URL}
+      - S3_ACCESS_KEY=${S3_ACCESS_KEY}
+      - S3_SECRET_KEY=${S3_SECRET_KEY}
+      - S3_USE_SSL=${S3_USE_SSL}
+    networks:
+      - rabbit-network
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+
+  #autocrop Tool - ms
+  autocrop-tool-ms:
+    build:
+      context: ../picturas_autoCrop_tool_ms/
+      dockerfile: Dockerfile
+      args:
+        SERVICE_NAME: picturas_autocrop_tool_ms
+    container_name: autocrop-tool-ms
+    restart: always
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=${RABBITMQ_PORT_INTERNAL}
+      - RABBITMQ_USER=${RABBITMQ_USER}
+      - RABBITMQ_PASS=${RABBITMQ_PASS}
+      - RABBITMQ_REQUESTS_QUEUE_NAME=${RABBITMQ_REQUESTS_QUEUE_AUTOCROP}
+      - RABBITMQ_RESULTS_EXCHANGE=${RABBITMQ_RESULTS_EXCHANGE}
+      - RABBITMQ_RESULTS_ROUTING_KEY=${RABBITMQ_RESULTS_ROUTING_KEY}
+      - PICTURAS_MS_NAME=${PICTURAS_MS_NAME_AUTOCROP}
+      - PICTURAS_LOG_LEVEL=${PICTURAS_LOG_LEVEL}  
+      - PICTURAS_NUM_THREADS=${PICTURAS_NUM_THREADS}
+      - S3_ENDPOINT_URL=${S3_ENDPOINT_URL}
+      - S3_ACCESS_KEY=${S3_ACCESS_KEY}
+      - S3_SECRET_KEY=${S3_SECRET_KEY}
+      - S3_USE_SSL=${S3_USE_SSL}
+    networks:
+      - rabbit-network
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+        
+volumes:
+  rabbitmq_data:
+  rabbitmq_logs:
+
+networks:
+#network to communicate with rabbit mq
+  rabbit-network:
+    driver: bridge

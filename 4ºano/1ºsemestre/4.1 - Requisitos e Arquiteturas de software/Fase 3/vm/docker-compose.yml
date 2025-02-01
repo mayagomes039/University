@@ -1,0 +1,586 @@
+services:
+# IMAGE  SERVICES
+#RABBIT MQ
+  rabbitmq:
+    image: rabbitmq:4-management-alpine
+    container_name: rabbitmq
+    hostname: 'rabbitmq'
+    restart: always
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASS}
+    networks:
+      - services-network
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq  # Persistent data storage
+      - rabbitmq_logs:/var/log/rabbitmq  # Optional: Log storage
+    healthcheck:
+      test: rabbitmq-diagnostics check_port_connectivity
+      interval: 30s
+      timeout: 15s
+      retries: 10
+
+  # MinIO as S3 SelfHosted for development
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    restart: always
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    networks:
+      - services-network
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+      MINIO_BROWSER_REDIRECT_URL: https://l.primecog.com/minio/ui
+    volumes:
+      - ~/minio/data:/data
+    command: server /data --console-address ":9001"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 15s
+      retries: 10
+
+  # Deploy Script
+  deployscript:
+    build: ./backend/ms-project/devDeployment/deployScript/
+    container_name: deploy-script
+    restart: "always" # Do not restart, as it will run once and stop.
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=${RABBITMQ_PORT_INTERNAL}
+      - RABBITMQ_USER=${RABBITMQ_USER}
+      - RABBITMQ_PASS=${RABBITMQ_PASS}
+      - PICTURAS_LOG_LEVEL=${PICTURAS_LOG_LEVEL}  
+      - S3_ENDPOINT_URL=${S3_ENDPOINT_URL}
+      - S3_ACCESS_KEY=${S3_ACCESS_KEY}
+      - S3_SECRET_KEY=${S3_SECRET_KEY}
+      - S3_USE_SSL=${S3_USE_SSL}
+      - S3_BUCKET_NAME=${S3_BUCKET_NAME:-my-bucket}
+    networks:
+        - services-network
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+    command: sh -c "python3 ./main.py"
+
+  #Original Watermark Tool - ms
+  watermark-tool-ms:
+    build:
+      context: ./backend/ms-project/picturas_watermark_tool_ms/
+      dockerfile: Dockerfile
+      args:
+        SERVICE_NAME: picturas_watermark_tool_ms
+    container_name: watermark-tool-ms
+    restart: always
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=${RABBITMQ_PORT_INTERNAL}
+      - RABBITMQ_USER=${RABBITMQ_USER}
+      - RABBITMQ_PASS=${RABBITMQ_PASS}
+      - RABBITMQ_REQUESTS_QUEUE_NAME=${RABBITMQ_REQUESTS_QUEUE_WATERMARK}
+      - RABBITMQ_RESULTS_EXCHANGE=${RABBITMQ_RESULTS_EXCHANGE}
+      - RABBITMQ_RESULTS_ROUTING_KEY=${RABBITMQ_RESULTS_ROUTING_KEY}
+      - PICTURAS_MS_NAME=${PICTURAS_MS_NAME_WATERMARK}
+      - PICTURAS_LOG_LEVEL=${PICTURAS_LOG_LEVEL}  
+      - PICTURAS_NUM_THREADS=${PICTURAS_NUM_THREADS}
+      - S3_ENDPOINT_URL=${S3_ENDPOINT_URL}
+      - S3_ACCESS_KEY=${S3_ACCESS_KEY}
+      - S3_SECRET_KEY=${S3_SECRET_KEY}
+      - S3_USE_SSL=${S3_USE_SSL}
+    networks:
+        - services-network
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+
+  #Scale Tool - ms
+  scale-tool-ms:
+    build:
+      context: ./backend/ms-project/picturas_scale_tool_ms/
+      dockerfile: Dockerfile
+      args:
+        SERVICE_NAME: picturas_scale_tool_ms
+    container_name: scale-tool-ms
+    restart: always
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=${RABBITMQ_PORT_INTERNAL}
+      - RABBITMQ_USER=${RABBITMQ_USER}
+      - RABBITMQ_PASS=${RABBITMQ_PASS}
+      - RABBITMQ_REQUESTS_QUEUE_NAME=${RABBITMQ_REQUESTS_QUEUE_SCALE}
+      - RABBITMQ_RESULTS_EXCHANGE=${RABBITMQ_RESULTS_EXCHANGE}
+      - RABBITMQ_RESULTS_ROUTING_KEY=${RABBITMQ_RESULTS_ROUTING_KEY}
+      - PICTURAS_MS_NAME=${PICTURAS_MS_NAME_SCALE}
+      - PICTURAS_LOG_LEVEL=${PICTURAS_LOG_LEVEL}  
+      - PICTURAS_NUM_THREADS=${PICTURAS_NUM_THREADS}
+      - S3_ENDPOINT_URL=${S3_ENDPOINT_URL}
+      - S3_ACCESS_KEY=${S3_ACCESS_KEY}
+      - S3_SECRET_KEY=${S3_SECRET_KEY}
+      - S3_USE_SSL=${S3_USE_SSL}
+    networks:
+        - services-network
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+
+  #Rotate Tool - ms
+  rotate-tool-ms:
+    build:
+      context: ./backend/ms-project/picturas_rotate_tool_ms/
+      dockerfile: Dockerfile
+      args:
+        SERVICE_NAME: picturas_rotate_tool_ms
+    container_name: rotate-tool-ms
+    restart: always
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=${RABBITMQ_PORT_INTERNAL}
+      - RABBITMQ_USER=${RABBITMQ_USER}
+      - RABBITMQ_PASS=${RABBITMQ_PASS}
+      - RABBITMQ_REQUESTS_QUEUE_NAME=${RABBITMQ_REQUESTS_QUEUE_ROTATE}
+      - RABBITMQ_RESULTS_EXCHANGE=${RABBITMQ_RESULTS_EXCHANGE}
+      - RABBITMQ_RESULTS_ROUTING_KEY=${RABBITMQ_RESULTS_ROUTING_KEY}
+      - PICTURAS_MS_NAME=${PICTURAS_MS_NAME_ROTATE}
+      - PICTURAS_LOG_LEVEL=${PICTURAS_LOG_LEVEL}  
+      - PICTURAS_NUM_THREADS=${PICTURAS_NUM_THREADS}
+      - S3_ENDPOINT_URL=${S3_ENDPOINT_URL}
+      - S3_ACCESS_KEY=${S3_ACCESS_KEY}
+      - S3_SECRET_KEY=${S3_SECRET_KEY}
+      - S3_USE_SSL=${S3_USE_SSL}
+    networks:
+        - services-network
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+
+  #contrast Tool - ms
+  contrast-tool-ms:
+    build:
+      context: ./backend/ms-project/picturas_contrast_tool_ms/
+      dockerfile: Dockerfile
+      args:
+        SERVICE_NAME: picturas_contrast_tool_ms
+    container_name: contrast-tool-ms
+    restart: always
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=${RABBITMQ_PORT_INTERNAL}
+      - RABBITMQ_USER=${RABBITMQ_USER}
+      - RABBITMQ_PASS=${RABBITMQ_PASS}
+      - RABBITMQ_REQUESTS_QUEUE_NAME=${RABBITMQ_REQUESTS_QUEUE_CONTRAST}
+      - RABBITMQ_RESULTS_EXCHANGE=${RABBITMQ_RESULTS_EXCHANGE}
+      - RABBITMQ_RESULTS_ROUTING_KEY=${RABBITMQ_RESULTS_ROUTING_KEY}
+      - PICTURAS_MS_NAME=${PICTURAS_MS_NAME_CONTRAST}
+      - PICTURAS_LOG_LEVEL=${PICTURAS_LOG_LEVEL}  
+      - PICTURAS_NUM_THREADS=${PICTURAS_NUM_THREADS}
+      - S3_ENDPOINT_URL=${S3_ENDPOINT_URL}
+      - S3_ACCESS_KEY=${S3_ACCESS_KEY}
+      - S3_SECRET_KEY=${S3_SECRET_KEY}
+      - S3_USE_SSL=${S3_USE_SSL}
+    networks:
+        - services-network
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+
+  #brightness Tool - ms
+  brightness-tool-ms:
+    build:
+      context: ./backend/ms-project/picturas_brightness_tool_ms/
+      dockerfile: Dockerfile
+      args:
+        SERVICE_NAME: picturas_brightness_tool_ms
+    container_name: brightness-tool-ms
+    restart: always
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=${RABBITMQ_PORT_INTERNAL}
+      - RABBITMQ_USER=${RABBITMQ_USER}
+      - RABBITMQ_PASS=${RABBITMQ_PASS}
+      - RABBITMQ_REQUESTS_QUEUE_NAME=${RABBITMQ_REQUESTS_QUEUE_BRIGHTNESS}
+      - RABBITMQ_RESULTS_EXCHANGE=${RABBITMQ_RESULTS_EXCHANGE}
+      - RABBITMQ_RESULTS_ROUTING_KEY=${RABBITMQ_RESULTS_ROUTING_KEY}
+      - PICTURAS_MS_NAME=${PICTURAS_MS_NAME_BRIGHTNESS}
+      - PICTURAS_LOG_LEVEL=${PICTURAS_LOG_LEVEL}  
+      - PICTURAS_NUM_THREADS=${PICTURAS_NUM_THREADS}
+      - S3_ENDPOINT_URL=${S3_ENDPOINT_URL}
+      - S3_ACCESS_KEY=${S3_ACCESS_KEY}
+      - S3_SECRET_KEY=${S3_SECRET_KEY}
+      - S3_USE_SSL=${S3_USE_SSL}
+    networks:
+        - services-network
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+
+  #border Tool - ms
+  border-tool-ms:
+    build:
+      context: ./backend/ms-project/picturas_border_tool_ms/
+      dockerfile: Dockerfile
+      args:
+        SERVICE_NAME: picturas_border_tool_ms
+    container_name: border-tool-ms
+    restart: always
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=${RABBITMQ_PORT_INTERNAL}
+      - RABBITMQ_USER=${RABBITMQ_USER}
+      - RABBITMQ_PASS=${RABBITMQ_PASS}
+      - RABBITMQ_REQUESTS_QUEUE_NAME=${RABBITMQ_REQUESTS_QUEUE_BORDER}
+      - RABBITMQ_RESULTS_EXCHANGE=${RABBITMQ_RESULTS_EXCHANGE}
+      - RABBITMQ_RESULTS_ROUTING_KEY=${RABBITMQ_RESULTS_ROUTING_KEY}
+      - PICTURAS_MS_NAME=${PICTURAS_MS_NAME_BORDER}
+      - PICTURAS_LOG_LEVEL=${PICTURAS_LOG_LEVEL}  
+      - PICTURAS_NUM_THREADS=${PICTURAS_NUM_THREADS}
+      - S3_ENDPOINT_URL=${S3_ENDPOINT_URL}
+      - S3_ACCESS_KEY=${S3_ACCESS_KEY}
+      - S3_SECRET_KEY=${S3_SECRET_KEY}
+      - S3_USE_SSL=${S3_USE_SSL}
+    networks:
+        - services-network
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+
+  # crop Tool - ms
+  crop-tool-ms:
+    build:
+      context: ./backend/ms-project/picturas_crop_tool_ms/
+      dockerfile: Dockerfile
+      args:
+        SERVICE_NAME: picturas_crop_tool_ms
+    container_name: crop-tool-ms
+    restart: always
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=${RABBITMQ_PORT_INTERNAL}
+      - RABBITMQ_USER=${RABBITMQ_USER}
+      - RABBITMQ_PASS=${RABBITMQ_PASS}
+      - RABBITMQ_REQUESTS_QUEUE_NAME=${RABBITMQ_REQUESTS_QUEUE_CROP}
+      - RABBITMQ_RESULTS_EXCHANGE=${RABBITMQ_RESULTS_EXCHANGE}
+      - RABBITMQ_RESULTS_ROUTING_KEY=${RABBITMQ_RESULTS_ROUTING_KEY}
+      - PICTURAS_MS_NAME=${PICTURAS_MS_NAME_CROP}
+      - PICTURAS_LOG_LEVEL=${PICTURAS_LOG_LEVEL}  
+      - PICTURAS_NUM_THREADS=${PICTURAS_NUM_THREADS}
+      - S3_ENDPOINT_URL=${S3_ENDPOINT_URL}
+      - S3_ACCESS_KEY=${S3_ACCESS_KEY}
+      - S3_SECRET_KEY=${S3_SECRET_KEY}
+      - S3_USE_SSL=${S3_USE_SSL}
+    networks:
+        - services-network
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+
+  # removeBG TOOL -ms
+  removebg-tool-ms:
+    build:
+      context: ./backend/ms-project/picturas_removebg_tool_ms/
+      dockerfile: Dockerfile
+      args:
+        SERVICE_NAME: picturas_removebg_tool_ms
+    container_name: removebg-tool-ms
+    restart: always
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=${RABBITMQ_PORT_INTERNAL}
+      - RABBITMQ_USER=${RABBITMQ_USER}
+      - RABBITMQ_PASS=${RABBITMQ_PASS}
+      - RABBITMQ_REQUESTS_QUEUE_NAME=${RABBITMQ_REQUESTS_QUEUE_REMOVEBG}
+      - RABBITMQ_RESULTS_EXCHANGE=${RABBITMQ_RESULTS_EXCHANGE}
+      - RABBITMQ_RESULTS_ROUTING_KEY=${RABBITMQ_RESULTS_ROUTING_KEY}
+      - PICTURAS_MS_NAME=${PICTURAS_MS_NAME_REMOVEBG}
+      - PICTURAS_LOG_LEVEL=${PICTURAS_LOG_LEVEL}  
+      - PICTURAS_NUM_THREADS=${PICTURAS_NUM_THREADS}
+      - S3_ENDPOINT_URL=${S3_ENDPOINT_URL}
+      - S3_ACCESS_KEY=${S3_ACCESS_KEY}
+      - S3_SECRET_KEY=${S3_SECRET_KEY}
+      - S3_USE_SSL=${S3_USE_SSL}
+    networks:
+        - services-network
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+
+  #autocrop Tool - ms
+  autocrop-tool-ms:
+    build:
+      context: ./backend/ms-project/picturas_autoCrop_tool_ms/
+      dockerfile: Dockerfile
+      args:
+        SERVICE_NAME: picturas_autocrop_tool_ms
+    container_name: autocrop-tool-ms
+    restart: always
+    environment:
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=${RABBITMQ_PORT_INTERNAL}
+      - RABBITMQ_USER=${RABBITMQ_USER}
+      - RABBITMQ_PASS=${RABBITMQ_PASS}
+      - RABBITMQ_REQUESTS_QUEUE_NAME=${RABBITMQ_REQUESTS_QUEUE_AUTOCROP}
+      - RABBITMQ_RESULTS_EXCHANGE=${RABBITMQ_RESULTS_EXCHANGE}
+      - RABBITMQ_RESULTS_ROUTING_KEY=${RABBITMQ_RESULTS_ROUTING_KEY}
+      - PICTURAS_MS_NAME=${PICTURAS_MS_NAME_AUTOCROP}
+      - PICTURAS_LOG_LEVEL=${PICTURAS_LOG_LEVEL}  
+      - PICTURAS_NUM_THREADS=${PICTURAS_NUM_THREADS}
+      - S3_ENDPOINT_URL=${S3_ENDPOINT_URL}
+      - S3_ACCESS_KEY=${S3_ACCESS_KEY}
+      - S3_SECRET_KEY=${S3_SECRET_KEY}
+      - S3_USE_SSL=${S3_USE_SSL}
+    networks:
+        - services-network
+    depends_on:
+      rabbitmq:
+        condition: service_healthy
+      minio:
+        condition: service_healthy
+
+
+  # PROJECT project
+  project-postgres:
+      image: postgres
+      environment:
+          - POSTGRES_USER=${POSTGRES_PROJECT_USER:-project}
+          - POSTGRES_PASSWORD=${POSTGRES_PROJECT_PASS:-project}
+          - POSTGRES_DB=${POSTGRES_PROJECT_DB:-project}
+      #ports: removed so this cannot communicate with the exterior
+      #    - "${POSTGRES_PORT:-5434}:5432"
+      volumes: #this ensures data retain, if not required remove 
+          - project_data:/var/lib/postgresql/data
+      healthcheck:
+          test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_PROJECT_USER:-project}"]
+          interval: 10s
+          timeout: 5s
+          retries: 5
+          start_period: 30s
+      networks:
+          - project-network
+
+  project-server:
+      restart: always
+      build: 
+          context: ./backend/Projects
+          dockerfile: Dockerfile
+      environment:
+        - CURRENTHOST=l.primecog.com/
+        - PORT=3003
+        - NODE_ENV=${NODE_ENV:-development}
+        - S3_ENDPOINT_URL=${S3_ENDPOINT_URL}
+        - S3_ACCESS_KEY=${S3_ACCESS_KEY}
+        - S3_SECRET_KEY=${S3_SECRET_KEY}
+        - POSTGRES_USER=${POSTGRES_PROJECT_USER:-project}
+        - POSTGRES_PASS=${POSTGRES_PROJECT_PASS:-project}
+        - POSTGRES_DB=${POSTGRES_PROJECT_DB:-project}
+        - POSTGRES_HOST=project-postgres #reference to project-postgres service
+        - POSTGRES_PORT=5432 #Default postgres port, keep as is
+        - RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672
+        - WS_API=http://websocket-server:8080/
+        - USER_API=http://user-server:3002/api/user/
+      ports:
+        - "3003:3003"
+      depends_on:
+        project-postgres:
+          condition: service_healthy
+        rabbitmq:
+          condition: service_healthy
+        minio:
+          condition: service_healthy
+      networks:
+        - project-network
+        - services-network
+        - api-network
+        - websocket-network
+      command: sh -c "${NODE_MiGRATE_START_COMMAND}"
+
+  # SUBSCRIPTIONS project
+  subscriptions-postgres:
+      image: postgres
+      environment:
+          - POSTGRES_USER=${POSTGRES_SUBSCRIPTIONS_USER:-subscription}
+          - POSTGRES_PASSWORD=${POSTGRES_SUBSCRIPTIONS_PASS:-subscription}
+          - POSTGRES_DB=${POSTGRES_SUBSCRIPTIONS_DB:-subscription}
+      #ports: removed so this cannot communicate with the exterior
+      #    - "${POSTGRES_PORT:-5434}:5432"
+      volumes: #this ensures data retain, if not required remove 
+          - subscriptions_data:/var/lib/postgresql/data
+      healthcheck:
+          test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_SUBSCRIPTIONS_USER:-subscription}"]
+          interval: 10s
+          timeout: 5s
+          retries: 5
+          start_period: 30s
+      networks:
+          - subscriptions-network
+
+  subscriptions-server:
+      build: 
+          context: ./backend/Subscriptions
+          dockerfile: Dockerfile
+      environment:
+          - CURRENTHOST=l.primecog.com/
+          - PORT=3001
+          - NODE_ENV=${NODE_ENV:-development}
+          - POSTGRES_USER=${POSTGRES_SUBSCRIPTIONS_USER:-subscription}
+          - POSTGRES_PASS=${POSTGRES_SUBSCRIPTIONS_PASS:-subscription}
+          - POSTGRES_DB=${POSTGRES_SUBSCRIPTIONS_DB:-subscription}
+          - POSTGRES_HOST=subscriptions-postgres #reference to subscription-postgres service
+          - POSTGRES_PORT=5432 #Default postgres port, keep as is
+      ports:
+          - "3001:3001"
+      depends_on:
+          subscriptions-postgres:
+            condition: service_healthy
+          rabbitmq:
+            condition: service_healthy
+          minio:
+            condition: service_healthy
+      networks:
+          - subscriptions-network
+          - api-network
+      command: sh -c "${NODE_MiGRATE_START_COMMAND}"
+    
+  # USER project
+  user-postgres:
+      image: postgres
+      environment:
+          - POSTGRES_USER=${POSTGRES_USER_USER:-user}
+          - POSTGRES_PASSWORD=${POSTGRES_USER_PASS:-user}
+          - POSTGRES_DB=${POSTGRES_USER_DB:-user}
+      #ports: removed so this cannot communicate with the exterior
+      #    - "${POSTGRES_PORT:-5434}:5432"
+      volumes: #this ensures data retain, if not required remove 
+          - user_data:/var/lib/postgresql/data
+      healthcheck:
+          test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER_USER:-user}"]
+          interval: 10s
+          timeout: 5s
+          retries: 5
+          start_period: 30s
+      networks:
+          - user-network
+
+  user-server:
+      build: 
+          context: ./backend/Users
+          dockerfile: Dockerfile
+      environment:
+          - CURRENTHOST=l.primecog.com/
+          - PORT=3002
+          - NODE_ENV=${NODE_ENV:-development}
+          - POSTGRES_USER=${POSTGRES_USER_USER:-user}
+          - POSTGRES_PASS=${POSTGRES_USER_PASS:-user}
+          - POSTGRES_DB=${POSTGRES_USER_DB:-user}
+          - POSTGRES_HOST=user-postgres #reference to user-postgres service
+          - POSTGRES_PORT=5432 #Default postgres port, keep as is
+      ports:
+          - "3002:3002"
+      depends_on:
+          user-postgres:
+            condition: service_healthy
+          rabbitmq:
+            condition: service_healthy
+          minio:
+            condition: service_healthy
+      networks:
+          - user-network
+          - api-network
+      command: sh -c "${NODE_MiGRATE_START_COMMAND}"
+# API
+  api-external:
+    build: 
+        context: ./backend/API
+        dockerfile: Dockerfile
+    environment:
+        - CURRENTHOST=l.primecog.com/
+        - PORT=3000
+        - CORS_PORT=80
+        - NODE_ENV=${NODE_ENV:-development}
+        - SUBSCRIPTIONS_API=http://subscriptions-server:3001
+        - USERS_API=http://user-server:3002
+        - PROJECTS_API=http://project-server:3003
+        - SECRET_KEY_JWT=${SECRET_KEY_JWT:-secret_key} 
+    ports:
+        - "3000:3000"
+    networks:
+        - api-network
+    command: sh -c "${NODE_START_COMMAND}"
+
+# Web Socket
+  websocket-server:
+    build:
+      context: ./backend/WSGateway  
+      dockerfile: Dockerfile
+    container_name: ws-gateway
+    ports:
+      - "8080:8080"  # Expõe a porta 8080 para comunicação
+    environment:
+      - PORT=8080
+      - NODE_ENV=production  # Definir o ambiente como produção
+    networks:
+      - websocket-network
+
+# Web Server
+  webserver:
+    build:
+      context: ./frontend/ 
+      dockerfile: Dockerfile
+    container_name: webserver_frontend
+    ports:
+      - "2999:2999"  # Expõe a porta 2999 para exterior
+    environment:
+      - PORT=2999
+      - VITE_APP_TITLE=Picturas
+      - VITE_API_URL=l.primecog.com/
+      - NODE_ENV=${NODE_ENV:-development}  # Definir o ambiente como produção
+    networks:
+      - api-network
+      - websocket-network
+
+volumes:
+  rabbitmq_data:
+  rabbitmq_logs:
+  project_data:
+  subscriptions_data:
+  user_data:
+
+networks:
+  api-network:
+    driver: bridge
+#network to communicate with rabbit mq
+  services-network:
+    driver: bridge
+#private network between project server and project db
+  project-network:
+    driver: bridge
+#private network between subscriptions server and subscriptions db
+  subscriptions-network:
+    driver: bridge
+#private network between user server and user db
+  user-network:
+    driver: bridge
+  websocket-network:
+    driver: bridge  # Rede padrão do Docker

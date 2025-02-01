@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "CommonJS",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "rootDir": "./src",
+    "experimentalDecorators": true, /* Necessário para permitir decoradores */
+    "emitDecoratorMetadata": true  /* Necessário para emitir metadados */
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
