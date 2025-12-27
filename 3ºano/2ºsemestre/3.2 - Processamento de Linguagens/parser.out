@@ -1,0 +1,820 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    2DUP
+    2OVER
+    2SWAP
+    CHAR
+    COMENTARIO
+    CR
+    DIVMOD
+    DUP
+    EMIT
+    IGUAL
+    OVER
+    PONTO
+    ROT
+    SPACE
+    SPACES
+    STR
+
+Grammar
+
+Rule 0     S' -> Z
+Rule 1     Z -> exp
+Rule 2     exp -> termo
+Rule 3     exp -> termo exp
+Rule 4     termo -> NUM
+Rule 5     termo -> expressao_artimetica
+Rule 6     termo -> condicional expressao_condicional
+Rule 7     termo -> condicional
+Rule 8     termo -> funcao
+Rule 9     funcao -> FUNCAO_RAW
+Rule 10    termo -> FUNCAO
+Rule 11    expressao_artimetica -> SOMA
+Rule 12    expressao_artimetica -> SUBTRACAO
+Rule 13    expressao_artimetica -> MULT
+Rule 14    expressao_artimetica -> DIV
+Rule 15    expressao_artimetica -> MOD
+Rule 16    expressao_artimetica -> SWAP
+Rule 17    expressao_artimetica -> DROP
+Rule 18    expressao_artimetica -> 2DROP
+Rule 19    expressao_condicional -> IF statement ELSE statement THEN statement
+Rule 20    expressao_condicional -> IF statement THEN statement
+Rule 21    expressao_condicional -> IF statement THEN
+Rule 22    statement -> NUM
+Rule 23    statement -> expressao_artimetica
+Rule 24    condicional -> MAIOR
+Rule 25    condicional -> MENOR
+
+Terminals, with rules where they appear
+
+2DROP                : 18
+2DUP                 : 
+2OVER                : 
+2SWAP                : 
+CHAR                 : 
+COMENTARIO           : 
+CR                   : 
+DIV                  : 14
+DIVMOD               : 
+DROP                 : 17
+DUP                  : 
+ELSE                 : 19
+EMIT                 : 
+FUNCAO               : 10
+FUNCAO_RAW           : 9
+IF                   : 19 20 21
+IGUAL                : 
+MAIOR                : 24
+MENOR                : 25
+MOD                  : 15
+MULT                 : 13
+NUM                  : 4 22
+OVER                 : 
+PONTO                : 
+ROT                  : 
+SOMA                 : 11
+SPACE                : 
+SPACES               : 
+STR                  : 
+SUBTRACAO            : 12
+SWAP                 : 16
+THEN                 : 19 20 21
+error                : 
+
+Nonterminals, with rules where they appear
+
+Z                    : 0
+condicional          : 6 7
+exp                  : 1 3
+expressao_artimetica : 5 23
+expressao_condicional : 6
+funcao               : 8
+statement            : 19 19 19 20 20 21
+termo                : 2 3
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . Z
+    (1) Z -> . exp
+    (2) exp -> . termo
+    (3) exp -> . termo exp
+    (4) termo -> . NUM
+    (5) termo -> . expressao_artimetica
+    (6) termo -> . condicional expressao_condicional
+    (7) termo -> . condicional
+    (8) termo -> . funcao
+    (10) termo -> . FUNCAO
+    (11) expressao_artimetica -> . SOMA
+    (12) expressao_artimetica -> . SUBTRACAO
+    (13) expressao_artimetica -> . MULT
+    (14) expressao_artimetica -> . DIV
+    (15) expressao_artimetica -> . MOD
+    (16) expressao_artimetica -> . SWAP
+    (17) expressao_artimetica -> . DROP
+    (18) expressao_artimetica -> . 2DROP
+    (24) condicional -> . MAIOR
+    (25) condicional -> . MENOR
+    (9) funcao -> . FUNCAO_RAW
+
+    NUM             shift and go to state 4
+    FUNCAO          shift and go to state 8
+    SOMA            shift and go to state 9
+    SUBTRACAO       shift and go to state 10
+    MULT            shift and go to state 11
+    DIV             shift and go to state 12
+    MOD             shift and go to state 13
+    SWAP            shift and go to state 14
+    DROP            shift and go to state 15
+    2DROP           shift and go to state 16
+    MAIOR           shift and go to state 17
+    MENOR           shift and go to state 18
+    FUNCAO_RAW      shift and go to state 19
+
+    Z                              shift and go to state 1
+    exp                            shift and go to state 2
+    termo                          shift and go to state 3
+    expressao_artimetica           shift and go to state 5
+    condicional                    shift and go to state 6
+    funcao                         shift and go to state 7
+
+state 1
+
+    (0) S' -> Z .
+
+
+
+state 2
+
+    (1) Z -> exp .
+
+    $end            reduce using rule 1 (Z -> exp .)
+
+
+state 3
+
+    (2) exp -> termo .
+    (3) exp -> termo . exp
+    (2) exp -> . termo
+    (3) exp -> . termo exp
+    (4) termo -> . NUM
+    (5) termo -> . expressao_artimetica
+    (6) termo -> . condicional expressao_condicional
+    (7) termo -> . condicional
+    (8) termo -> . funcao
+    (10) termo -> . FUNCAO
+    (11) expressao_artimetica -> . SOMA
+    (12) expressao_artimetica -> . SUBTRACAO
+    (13) expressao_artimetica -> . MULT
+    (14) expressao_artimetica -> . DIV
+    (15) expressao_artimetica -> . MOD
+    (16) expressao_artimetica -> . SWAP
+    (17) expressao_artimetica -> . DROP
+    (18) expressao_artimetica -> . 2DROP
+    (24) condicional -> . MAIOR
+    (25) condicional -> . MENOR
+    (9) funcao -> . FUNCAO_RAW
+
+    $end            reduce using rule 2 (exp -> termo .)
+    NUM             shift and go to state 4
+    FUNCAO          shift and go to state 8
+    SOMA            shift and go to state 9
+    SUBTRACAO       shift and go to state 10
+    MULT            shift and go to state 11
+    DIV             shift and go to state 12
+    MOD             shift and go to state 13
+    SWAP            shift and go to state 14
+    DROP            shift and go to state 15
+    2DROP           shift and go to state 16
+    MAIOR           shift and go to state 17
+    MENOR           shift and go to state 18
+    FUNCAO_RAW      shift and go to state 19
+
+    termo                          shift and go to state 3
+    exp                            shift and go to state 20
+    expressao_artimetica           shift and go to state 5
+    condicional                    shift and go to state 6
+    funcao                         shift and go to state 7
+
+state 4
+
+    (4) termo -> NUM .
+
+    NUM             reduce using rule 4 (termo -> NUM .)
+    FUNCAO          reduce using rule 4 (termo -> NUM .)
+    SOMA            reduce using rule 4 (termo -> NUM .)
+    SUBTRACAO       reduce using rule 4 (termo -> NUM .)
+    MULT            reduce using rule 4 (termo -> NUM .)
+    DIV             reduce using rule 4 (termo -> NUM .)
+    MOD             reduce using rule 4 (termo -> NUM .)
+    SWAP            reduce using rule 4 (termo -> NUM .)
+    DROP            reduce using rule 4 (termo -> NUM .)
+    2DROP           reduce using rule 4 (termo -> NUM .)
+    MAIOR           reduce using rule 4 (termo -> NUM .)
+    MENOR           reduce using rule 4 (termo -> NUM .)
+    FUNCAO_RAW      reduce using rule 4 (termo -> NUM .)
+    $end            reduce using rule 4 (termo -> NUM .)
+
+
+state 5
+
+    (5) termo -> expressao_artimetica .
+
+    NUM             reduce using rule 5 (termo -> expressao_artimetica .)
+    FUNCAO          reduce using rule 5 (termo -> expressao_artimetica .)
+    SOMA            reduce using rule 5 (termo -> expressao_artimetica .)
+    SUBTRACAO       reduce using rule 5 (termo -> expressao_artimetica .)
+    MULT            reduce using rule 5 (termo -> expressao_artimetica .)
+    DIV             reduce using rule 5 (termo -> expressao_artimetica .)
+    MOD             reduce using rule 5 (termo -> expressao_artimetica .)
+    SWAP            reduce using rule 5 (termo -> expressao_artimetica .)
+    DROP            reduce using rule 5 (termo -> expressao_artimetica .)
+    2DROP           reduce using rule 5 (termo -> expressao_artimetica .)
+    MAIOR           reduce using rule 5 (termo -> expressao_artimetica .)
+    MENOR           reduce using rule 5 (termo -> expressao_artimetica .)
+    FUNCAO_RAW      reduce using rule 5 (termo -> expressao_artimetica .)
+    $end            reduce using rule 5 (termo -> expressao_artimetica .)
+
+
+state 6
+
+    (6) termo -> condicional . expressao_condicional
+    (7) termo -> condicional .
+    (19) expressao_condicional -> . IF statement ELSE statement THEN statement
+    (20) expressao_condicional -> . IF statement THEN statement
+    (21) expressao_condicional -> . IF statement THEN
+
+    NUM             reduce using rule 7 (termo -> condicional .)
+    FUNCAO          reduce using rule 7 (termo -> condicional .)
+    SOMA            reduce using rule 7 (termo -> condicional .)
+    SUBTRACAO       reduce using rule 7 (termo -> condicional .)
+    MULT            reduce using rule 7 (termo -> condicional .)
+    DIV             reduce using rule 7 (termo -> condicional .)
+    MOD             reduce using rule 7 (termo -> condicional .)
+    SWAP            reduce using rule 7 (termo -> condicional .)
+    DROP            reduce using rule 7 (termo -> condicional .)
+    2DROP           reduce using rule 7 (termo -> condicional .)
+    MAIOR           reduce using rule 7 (termo -> condicional .)
+    MENOR           reduce using rule 7 (termo -> condicional .)
+    FUNCAO_RAW      reduce using rule 7 (termo -> condicional .)
+    $end            reduce using rule 7 (termo -> condicional .)
+    IF              shift and go to state 22
+
+    expressao_condicional          shift and go to state 21
+
+state 7
+
+    (8) termo -> funcao .
+
+    NUM             reduce using rule 8 (termo -> funcao .)
+    FUNCAO          reduce using rule 8 (termo -> funcao .)
+    SOMA            reduce using rule 8 (termo -> funcao .)
+    SUBTRACAO       reduce using rule 8 (termo -> funcao .)
+    MULT            reduce using rule 8 (termo -> funcao .)
+    DIV             reduce using rule 8 (termo -> funcao .)
+    MOD             reduce using rule 8 (termo -> funcao .)
+    SWAP            reduce using rule 8 (termo -> funcao .)
+    DROP            reduce using rule 8 (termo -> funcao .)
+    2DROP           reduce using rule 8 (termo -> funcao .)
+    MAIOR           reduce using rule 8 (termo -> funcao .)
+    MENOR           reduce using rule 8 (termo -> funcao .)
+    FUNCAO_RAW      reduce using rule 8 (termo -> funcao .)
+    $end            reduce using rule 8 (termo -> funcao .)
+
+
+state 8
+
+    (10) termo -> FUNCAO .
+
+    NUM             reduce using rule 10 (termo -> FUNCAO .)
+    FUNCAO          reduce using rule 10 (termo -> FUNCAO .)
+    SOMA            reduce using rule 10 (termo -> FUNCAO .)
+    SUBTRACAO       reduce using rule 10 (termo -> FUNCAO .)
+    MULT            reduce using rule 10 (termo -> FUNCAO .)
+    DIV             reduce using rule 10 (termo -> FUNCAO .)
+    MOD             reduce using rule 10 (termo -> FUNCAO .)
+    SWAP            reduce using rule 10 (termo -> FUNCAO .)
+    DROP            reduce using rule 10 (termo -> FUNCAO .)
+    2DROP           reduce using rule 10 (termo -> FUNCAO .)
+    MAIOR           reduce using rule 10 (termo -> FUNCAO .)
+    MENOR           reduce using rule 10 (termo -> FUNCAO .)
+    FUNCAO_RAW      reduce using rule 10 (termo -> FUNCAO .)
+    $end            reduce using rule 10 (termo -> FUNCAO .)
+
+
+state 9
+
+    (11) expressao_artimetica -> SOMA .
+
+    NUM             reduce using rule 11 (expressao_artimetica -> SOMA .)
+    FUNCAO          reduce using rule 11 (expressao_artimetica -> SOMA .)
+    SOMA            reduce using rule 11 (expressao_artimetica -> SOMA .)
+    SUBTRACAO       reduce using rule 11 (expressao_artimetica -> SOMA .)
+    MULT            reduce using rule 11 (expressao_artimetica -> SOMA .)
+    DIV             reduce using rule 11 (expressao_artimetica -> SOMA .)
+    MOD             reduce using rule 11 (expressao_artimetica -> SOMA .)
+    SWAP            reduce using rule 11 (expressao_artimetica -> SOMA .)
+    DROP            reduce using rule 11 (expressao_artimetica -> SOMA .)
+    2DROP           reduce using rule 11 (expressao_artimetica -> SOMA .)
+    MAIOR           reduce using rule 11 (expressao_artimetica -> SOMA .)
+    MENOR           reduce using rule 11 (expressao_artimetica -> SOMA .)
+    FUNCAO_RAW      reduce using rule 11 (expressao_artimetica -> SOMA .)
+    $end            reduce using rule 11 (expressao_artimetica -> SOMA .)
+    ELSE            reduce using rule 11 (expressao_artimetica -> SOMA .)
+    THEN            reduce using rule 11 (expressao_artimetica -> SOMA .)
+
+
+state 10
+
+    (12) expressao_artimetica -> SUBTRACAO .
+
+    NUM             reduce using rule 12 (expressao_artimetica -> SUBTRACAO .)
+    FUNCAO          reduce using rule 12 (expressao_artimetica -> SUBTRACAO .)
+    SOMA            reduce using rule 12 (expressao_artimetica -> SUBTRACAO .)
+    SUBTRACAO       reduce using rule 12 (expressao_artimetica -> SUBTRACAO .)
+    MULT            reduce using rule 12 (expressao_artimetica -> SUBTRACAO .)
+    DIV             reduce using rule 12 (expressao_artimetica -> SUBTRACAO .)
+    MOD             reduce using rule 12 (expressao_artimetica -> SUBTRACAO .)
+    SWAP            reduce using rule 12 (expressao_artimetica -> SUBTRACAO .)
+    DROP            reduce using rule 12 (expressao_artimetica -> SUBTRACAO .)
+    2DROP           reduce using rule 12 (expressao_artimetica -> SUBTRACAO .)
+    MAIOR           reduce using rule 12 (expressao_artimetica -> SUBTRACAO .)
+    MENOR           reduce using rule 12 (expressao_artimetica -> SUBTRACAO .)
+    FUNCAO_RAW      reduce using rule 12 (expressao_artimetica -> SUBTRACAO .)
+    $end            reduce using rule 12 (expressao_artimetica -> SUBTRACAO .)
+    ELSE            reduce using rule 12 (expressao_artimetica -> SUBTRACAO .)
+    THEN            reduce using rule 12 (expressao_artimetica -> SUBTRACAO .)
+
+
+state 11
+
+    (13) expressao_artimetica -> MULT .
+
+    NUM             reduce using rule 13 (expressao_artimetica -> MULT .)
+    FUNCAO          reduce using rule 13 (expressao_artimetica -> MULT .)
+    SOMA            reduce using rule 13 (expressao_artimetica -> MULT .)
+    SUBTRACAO       reduce using rule 13 (expressao_artimetica -> MULT .)
+    MULT            reduce using rule 13 (expressao_artimetica -> MULT .)
+    DIV             reduce using rule 13 (expressao_artimetica -> MULT .)
+    MOD             reduce using rule 13 (expressao_artimetica -> MULT .)
+    SWAP            reduce using rule 13 (expressao_artimetica -> MULT .)
+    DROP            reduce using rule 13 (expressao_artimetica -> MULT .)
+    2DROP           reduce using rule 13 (expressao_artimetica -> MULT .)
+    MAIOR           reduce using rule 13 (expressao_artimetica -> MULT .)
+    MENOR           reduce using rule 13 (expressao_artimetica -> MULT .)
+    FUNCAO_RAW      reduce using rule 13 (expressao_artimetica -> MULT .)
+    $end            reduce using rule 13 (expressao_artimetica -> MULT .)
+    ELSE            reduce using rule 13 (expressao_artimetica -> MULT .)
+    THEN            reduce using rule 13 (expressao_artimetica -> MULT .)
+
+
+state 12
+
+    (14) expressao_artimetica -> DIV .
+
+    NUM             reduce using rule 14 (expressao_artimetica -> DIV .)
+    FUNCAO          reduce using rule 14 (expressao_artimetica -> DIV .)
+    SOMA            reduce using rule 14 (expressao_artimetica -> DIV .)
+    SUBTRACAO       reduce using rule 14 (expressao_artimetica -> DIV .)
+    MULT            reduce using rule 14 (expressao_artimetica -> DIV .)
+    DIV             reduce using rule 14 (expressao_artimetica -> DIV .)
+    MOD             reduce using rule 14 (expressao_artimetica -> DIV .)
+    SWAP            reduce using rule 14 (expressao_artimetica -> DIV .)
+    DROP            reduce using rule 14 (expressao_artimetica -> DIV .)
+    2DROP           reduce using rule 14 (expressao_artimetica -> DIV .)
+    MAIOR           reduce using rule 14 (expressao_artimetica -> DIV .)
+    MENOR           reduce using rule 14 (expressao_artimetica -> DIV .)
+    FUNCAO_RAW      reduce using rule 14 (expressao_artimetica -> DIV .)
+    $end            reduce using rule 14 (expressao_artimetica -> DIV .)
+    ELSE            reduce using rule 14 (expressao_artimetica -> DIV .)
+    THEN            reduce using rule 14 (expressao_artimetica -> DIV .)
+
+
+state 13
+
+    (15) expressao_artimetica -> MOD .
+
+    NUM             reduce using rule 15 (expressao_artimetica -> MOD .)
+    FUNCAO          reduce using rule 15 (expressao_artimetica -> MOD .)
+    SOMA            reduce using rule 15 (expressao_artimetica -> MOD .)
+    SUBTRACAO       reduce using rule 15 (expressao_artimetica -> MOD .)
+    MULT            reduce using rule 15 (expressao_artimetica -> MOD .)
+    DIV             reduce using rule 15 (expressao_artimetica -> MOD .)
+    MOD             reduce using rule 15 (expressao_artimetica -> MOD .)
+    SWAP            reduce using rule 15 (expressao_artimetica -> MOD .)
+    DROP            reduce using rule 15 (expressao_artimetica -> MOD .)
+    2DROP           reduce using rule 15 (expressao_artimetica -> MOD .)
+    MAIOR           reduce using rule 15 (expressao_artimetica -> MOD .)
+    MENOR           reduce using rule 15 (expressao_artimetica -> MOD .)
+    FUNCAO_RAW      reduce using rule 15 (expressao_artimetica -> MOD .)
+    $end            reduce using rule 15 (expressao_artimetica -> MOD .)
+    ELSE            reduce using rule 15 (expressao_artimetica -> MOD .)
+    THEN            reduce using rule 15 (expressao_artimetica -> MOD .)
+
+
+state 14
+
+    (16) expressao_artimetica -> SWAP .
+
+    NUM             reduce using rule 16 (expressao_artimetica -> SWAP .)
+    FUNCAO          reduce using rule 16 (expressao_artimetica -> SWAP .)
+    SOMA            reduce using rule 16 (expressao_artimetica -> SWAP .)
+    SUBTRACAO       reduce using rule 16 (expressao_artimetica -> SWAP .)
+    MULT            reduce using rule 16 (expressao_artimetica -> SWAP .)
+    DIV             reduce using rule 16 (expressao_artimetica -> SWAP .)
+    MOD             reduce using rule 16 (expressao_artimetica -> SWAP .)
+    SWAP            reduce using rule 16 (expressao_artimetica -> SWAP .)
+    DROP            reduce using rule 16 (expressao_artimetica -> SWAP .)
+    2DROP           reduce using rule 16 (expressao_artimetica -> SWAP .)
+    MAIOR           reduce using rule 16 (expressao_artimetica -> SWAP .)
+    MENOR           reduce using rule 16 (expressao_artimetica -> SWAP .)
+    FUNCAO_RAW      reduce using rule 16 (expressao_artimetica -> SWAP .)
+    $end            reduce using rule 16 (expressao_artimetica -> SWAP .)
+    ELSE            reduce using rule 16 (expressao_artimetica -> SWAP .)
+    THEN            reduce using rule 16 (expressao_artimetica -> SWAP .)
+
+
+state 15
+
+    (17) expressao_artimetica -> DROP .
+
+    NUM             reduce using rule 17 (expressao_artimetica -> DROP .)
+    FUNCAO          reduce using rule 17 (expressao_artimetica -> DROP .)
+    SOMA            reduce using rule 17 (expressao_artimetica -> DROP .)
+    SUBTRACAO       reduce using rule 17 (expressao_artimetica -> DROP .)
+    MULT            reduce using rule 17 (expressao_artimetica -> DROP .)
+    DIV             reduce using rule 17 (expressao_artimetica -> DROP .)
+    MOD             reduce using rule 17 (expressao_artimetica -> DROP .)
+    SWAP            reduce using rule 17 (expressao_artimetica -> DROP .)
+    DROP            reduce using rule 17 (expressao_artimetica -> DROP .)
+    2DROP           reduce using rule 17 (expressao_artimetica -> DROP .)
+    MAIOR           reduce using rule 17 (expressao_artimetica -> DROP .)
+    MENOR           reduce using rule 17 (expressao_artimetica -> DROP .)
+    FUNCAO_RAW      reduce using rule 17 (expressao_artimetica -> DROP .)
+    $end            reduce using rule 17 (expressao_artimetica -> DROP .)
+    ELSE            reduce using rule 17 (expressao_artimetica -> DROP .)
+    THEN            reduce using rule 17 (expressao_artimetica -> DROP .)
+
+
+state 16
+
+    (18) expressao_artimetica -> 2DROP .
+
+    NUM             reduce using rule 18 (expressao_artimetica -> 2DROP .)
+    FUNCAO          reduce using rule 18 (expressao_artimetica -> 2DROP .)
+    SOMA            reduce using rule 18 (expressao_artimetica -> 2DROP .)
+    SUBTRACAO       reduce using rule 18 (expressao_artimetica -> 2DROP .)
+    MULT            reduce using rule 18 (expressao_artimetica -> 2DROP .)
+    DIV             reduce using rule 18 (expressao_artimetica -> 2DROP .)
+    MOD             reduce using rule 18 (expressao_artimetica -> 2DROP .)
+    SWAP            reduce using rule 18 (expressao_artimetica -> 2DROP .)
+    DROP            reduce using rule 18 (expressao_artimetica -> 2DROP .)
+    2DROP           reduce using rule 18 (expressao_artimetica -> 2DROP .)
+    MAIOR           reduce using rule 18 (expressao_artimetica -> 2DROP .)
+    MENOR           reduce using rule 18 (expressao_artimetica -> 2DROP .)
+    FUNCAO_RAW      reduce using rule 18 (expressao_artimetica -> 2DROP .)
+    $end            reduce using rule 18 (expressao_artimetica -> 2DROP .)
+    ELSE            reduce using rule 18 (expressao_artimetica -> 2DROP .)
+    THEN            reduce using rule 18 (expressao_artimetica -> 2DROP .)
+
+
+state 17
+
+    (24) condicional -> MAIOR .
+
+    IF              reduce using rule 24 (condicional -> MAIOR .)
+    NUM             reduce using rule 24 (condicional -> MAIOR .)
+    FUNCAO          reduce using rule 24 (condicional -> MAIOR .)
+    SOMA            reduce using rule 24 (condicional -> MAIOR .)
+    SUBTRACAO       reduce using rule 24 (condicional -> MAIOR .)
+    MULT            reduce using rule 24 (condicional -> MAIOR .)
+    DIV             reduce using rule 24 (condicional -> MAIOR .)
+    MOD             reduce using rule 24 (condicional -> MAIOR .)
+    SWAP            reduce using rule 24 (condicional -> MAIOR .)
+    DROP            reduce using rule 24 (condicional -> MAIOR .)
+    2DROP           reduce using rule 24 (condicional -> MAIOR .)
+    MAIOR           reduce using rule 24 (condicional -> MAIOR .)
+    MENOR           reduce using rule 24 (condicional -> MAIOR .)
+    FUNCAO_RAW      reduce using rule 24 (condicional -> MAIOR .)
+    $end            reduce using rule 24 (condicional -> MAIOR .)
+
+
+state 18
+
+    (25) condicional -> MENOR .
+
+    IF              reduce using rule 25 (condicional -> MENOR .)
+    NUM             reduce using rule 25 (condicional -> MENOR .)
+    FUNCAO          reduce using rule 25 (condicional -> MENOR .)
+    SOMA            reduce using rule 25 (condicional -> MENOR .)
+    SUBTRACAO       reduce using rule 25 (condicional -> MENOR .)
+    MULT            reduce using rule 25 (condicional -> MENOR .)
+    DIV             reduce using rule 25 (condicional -> MENOR .)
+    MOD             reduce using rule 25 (condicional -> MENOR .)
+    SWAP            reduce using rule 25 (condicional -> MENOR .)
+    DROP            reduce using rule 25 (condicional -> MENOR .)
+    2DROP           reduce using rule 25 (condicional -> MENOR .)
+    MAIOR           reduce using rule 25 (condicional -> MENOR .)
+    MENOR           reduce using rule 25 (condicional -> MENOR .)
+    FUNCAO_RAW      reduce using rule 25 (condicional -> MENOR .)
+    $end            reduce using rule 25 (condicional -> MENOR .)
+
+
+state 19
+
+    (9) funcao -> FUNCAO_RAW .
+
+    NUM             reduce using rule 9 (funcao -> FUNCAO_RAW .)
+    FUNCAO          reduce using rule 9 (funcao -> FUNCAO_RAW .)
+    SOMA            reduce using rule 9 (funcao -> FUNCAO_RAW .)
+    SUBTRACAO       reduce using rule 9 (funcao -> FUNCAO_RAW .)
+    MULT            reduce using rule 9 (funcao -> FUNCAO_RAW .)
+    DIV             reduce using rule 9 (funcao -> FUNCAO_RAW .)
+    MOD             reduce using rule 9 (funcao -> FUNCAO_RAW .)
+    SWAP            reduce using rule 9 (funcao -> FUNCAO_RAW .)
+    DROP            reduce using rule 9 (funcao -> FUNCAO_RAW .)
+    2DROP           reduce using rule 9 (funcao -> FUNCAO_RAW .)
+    MAIOR           reduce using rule 9 (funcao -> FUNCAO_RAW .)
+    MENOR           reduce using rule 9 (funcao -> FUNCAO_RAW .)
+    FUNCAO_RAW      reduce using rule 9 (funcao -> FUNCAO_RAW .)
+    $end            reduce using rule 9 (funcao -> FUNCAO_RAW .)
+
+
+state 20
+
+    (3) exp -> termo exp .
+
+    $end            reduce using rule 3 (exp -> termo exp .)
+
+
+state 21
+
+    (6) termo -> condicional expressao_condicional .
+
+    NUM             reduce using rule 6 (termo -> condicional expressao_condicional .)
+    FUNCAO          reduce using rule 6 (termo -> condicional expressao_condicional .)
+    SOMA            reduce using rule 6 (termo -> condicional expressao_condicional .)
+    SUBTRACAO       reduce using rule 6 (termo -> condicional expressao_condicional .)
+    MULT            reduce using rule 6 (termo -> condicional expressao_condicional .)
+    DIV             reduce using rule 6 (termo -> condicional expressao_condicional .)
+    MOD             reduce using rule 6 (termo -> condicional expressao_condicional .)
+    SWAP            reduce using rule 6 (termo -> condicional expressao_condicional .)
+    DROP            reduce using rule 6 (termo -> condicional expressao_condicional .)
+    2DROP           reduce using rule 6 (termo -> condicional expressao_condicional .)
+    MAIOR           reduce using rule 6 (termo -> condicional expressao_condicional .)
+    MENOR           reduce using rule 6 (termo -> condicional expressao_condicional .)
+    FUNCAO_RAW      reduce using rule 6 (termo -> condicional expressao_condicional .)
+    $end            reduce using rule 6 (termo -> condicional expressao_condicional .)
+
+
+state 22
+
+    (19) expressao_condicional -> IF . statement ELSE statement THEN statement
+    (20) expressao_condicional -> IF . statement THEN statement
+    (21) expressao_condicional -> IF . statement THEN
+    (22) statement -> . NUM
+    (23) statement -> . expressao_artimetica
+    (11) expressao_artimetica -> . SOMA
+    (12) expressao_artimetica -> . SUBTRACAO
+    (13) expressao_artimetica -> . MULT
+    (14) expressao_artimetica -> . DIV
+    (15) expressao_artimetica -> . MOD
+    (16) expressao_artimetica -> . SWAP
+    (17) expressao_artimetica -> . DROP
+    (18) expressao_artimetica -> . 2DROP
+
+    NUM             shift and go to state 24
+    SOMA            shift and go to state 9
+    SUBTRACAO       shift and go to state 10
+    MULT            shift and go to state 11
+    DIV             shift and go to state 12
+    MOD             shift and go to state 13
+    SWAP            shift and go to state 14
+    DROP            shift and go to state 15
+    2DROP           shift and go to state 16
+
+    statement                      shift and go to state 23
+    expressao_artimetica           shift and go to state 25
+
+state 23
+
+    (19) expressao_condicional -> IF statement . ELSE statement THEN statement
+    (20) expressao_condicional -> IF statement . THEN statement
+    (21) expressao_condicional -> IF statement . THEN
+
+    ELSE            shift and go to state 26
+    THEN            shift and go to state 27
+
+
+state 24
+
+    (22) statement -> NUM .
+
+    ELSE            reduce using rule 22 (statement -> NUM .)
+    THEN            reduce using rule 22 (statement -> NUM .)
+    NUM             reduce using rule 22 (statement -> NUM .)
+    FUNCAO          reduce using rule 22 (statement -> NUM .)
+    SOMA            reduce using rule 22 (statement -> NUM .)
+    SUBTRACAO       reduce using rule 22 (statement -> NUM .)
+    MULT            reduce using rule 22 (statement -> NUM .)
+    DIV             reduce using rule 22 (statement -> NUM .)
+    MOD             reduce using rule 22 (statement -> NUM .)
+    SWAP            reduce using rule 22 (statement -> NUM .)
+    DROP            reduce using rule 22 (statement -> NUM .)
+    2DROP           reduce using rule 22 (statement -> NUM .)
+    MAIOR           reduce using rule 22 (statement -> NUM .)
+    MENOR           reduce using rule 22 (statement -> NUM .)
+    FUNCAO_RAW      reduce using rule 22 (statement -> NUM .)
+    $end            reduce using rule 22 (statement -> NUM .)
+
+
+state 25
+
+    (23) statement -> expressao_artimetica .
+
+    ELSE            reduce using rule 23 (statement -> expressao_artimetica .)
+    THEN            reduce using rule 23 (statement -> expressao_artimetica .)
+    NUM             reduce using rule 23 (statement -> expressao_artimetica .)
+    FUNCAO          reduce using rule 23 (statement -> expressao_artimetica .)
+    SOMA            reduce using rule 23 (statement -> expressao_artimetica .)
+    SUBTRACAO       reduce using rule 23 (statement -> expressao_artimetica .)
+    MULT            reduce using rule 23 (statement -> expressao_artimetica .)
+    DIV             reduce using rule 23 (statement -> expressao_artimetica .)
+    MOD             reduce using rule 23 (statement -> expressao_artimetica .)
+    SWAP            reduce using rule 23 (statement -> expressao_artimetica .)
+    DROP            reduce using rule 23 (statement -> expressao_artimetica .)
+    2DROP           reduce using rule 23 (statement -> expressao_artimetica .)
+    MAIOR           reduce using rule 23 (statement -> expressao_artimetica .)
+    MENOR           reduce using rule 23 (statement -> expressao_artimetica .)
+    FUNCAO_RAW      reduce using rule 23 (statement -> expressao_artimetica .)
+    $end            reduce using rule 23 (statement -> expressao_artimetica .)
+
+
+state 26
+
+    (19) expressao_condicional -> IF statement ELSE . statement THEN statement
+    (22) statement -> . NUM
+    (23) statement -> . expressao_artimetica
+    (11) expressao_artimetica -> . SOMA
+    (12) expressao_artimetica -> . SUBTRACAO
+    (13) expressao_artimetica -> . MULT
+    (14) expressao_artimetica -> . DIV
+    (15) expressao_artimetica -> . MOD
+    (16) expressao_artimetica -> . SWAP
+    (17) expressao_artimetica -> . DROP
+    (18) expressao_artimetica -> . 2DROP
+
+    NUM             shift and go to state 24
+    SOMA            shift and go to state 9
+    SUBTRACAO       shift and go to state 10
+    MULT            shift and go to state 11
+    DIV             shift and go to state 12
+    MOD             shift and go to state 13
+    SWAP            shift and go to state 14
+    DROP            shift and go to state 15
+    2DROP           shift and go to state 16
+
+    statement                      shift and go to state 28
+    expressao_artimetica           shift and go to state 25
+
+state 27
+
+    (20) expressao_condicional -> IF statement THEN . statement
+    (21) expressao_condicional -> IF statement THEN .
+    (22) statement -> . NUM
+    (23) statement -> . expressao_artimetica
+    (11) expressao_artimetica -> . SOMA
+    (12) expressao_artimetica -> . SUBTRACAO
+    (13) expressao_artimetica -> . MULT
+    (14) expressao_artimetica -> . DIV
+    (15) expressao_artimetica -> . MOD
+    (16) expressao_artimetica -> . SWAP
+    (17) expressao_artimetica -> . DROP
+    (18) expressao_artimetica -> . 2DROP
+
+  ! shift/reduce conflict for NUM resolved as shift
+  ! shift/reduce conflict for SOMA resolved as shift
+  ! shift/reduce conflict for SUBTRACAO resolved as shift
+  ! shift/reduce conflict for MULT resolved as shift
+  ! shift/reduce conflict for DIV resolved as shift
+  ! shift/reduce conflict for MOD resolved as shift
+  ! shift/reduce conflict for SWAP resolved as shift
+  ! shift/reduce conflict for DROP resolved as shift
+  ! shift/reduce conflict for 2DROP resolved as shift
+    FUNCAO          reduce using rule 21 (expressao_condicional -> IF statement THEN .)
+    MAIOR           reduce using rule 21 (expressao_condicional -> IF statement THEN .)
+    MENOR           reduce using rule 21 (expressao_condicional -> IF statement THEN .)
+    FUNCAO_RAW      reduce using rule 21 (expressao_condicional -> IF statement THEN .)
+    $end            reduce using rule 21 (expressao_condicional -> IF statement THEN .)
+    NUM             shift and go to state 24
+    SOMA            shift and go to state 9
+    SUBTRACAO       shift and go to state 10
+    MULT            shift and go to state 11
+    DIV             shift and go to state 12
+    MOD             shift and go to state 13
+    SWAP            shift and go to state 14
+    DROP            shift and go to state 15
+    2DROP           shift and go to state 16
+
+  ! NUM             [ reduce using rule 21 (expressao_condicional -> IF statement THEN .) ]
+  ! SOMA            [ reduce using rule 21 (expressao_condicional -> IF statement THEN .) ]
+  ! SUBTRACAO       [ reduce using rule 21 (expressao_condicional -> IF statement THEN .) ]
+  ! MULT            [ reduce using rule 21 (expressao_condicional -> IF statement THEN .) ]
+  ! DIV             [ reduce using rule 21 (expressao_condicional -> IF statement THEN .) ]
+  ! MOD             [ reduce using rule 21 (expressao_condicional -> IF statement THEN .) ]
+  ! SWAP            [ reduce using rule 21 (expressao_condicional -> IF statement THEN .) ]
+  ! DROP            [ reduce using rule 21 (expressao_condicional -> IF statement THEN .) ]
+  ! 2DROP           [ reduce using rule 21 (expressao_condicional -> IF statement THEN .) ]
+
+    statement                      shift and go to state 29
+    expressao_artimetica           shift and go to state 25
+
+state 28
+
+    (19) expressao_condicional -> IF statement ELSE statement . THEN statement
+
+    THEN            shift and go to state 30
+
+
+state 29
+
+    (20) expressao_condicional -> IF statement THEN statement .
+
+    NUM             reduce using rule 20 (expressao_condicional -> IF statement THEN statement .)
+    FUNCAO          reduce using rule 20 (expressao_condicional -> IF statement THEN statement .)
+    SOMA            reduce using rule 20 (expressao_condicional -> IF statement THEN statement .)
+    SUBTRACAO       reduce using rule 20 (expressao_condicional -> IF statement THEN statement .)
+    MULT            reduce using rule 20 (expressao_condicional -> IF statement THEN statement .)
+    DIV             reduce using rule 20 (expressao_condicional -> IF statement THEN statement .)
+    MOD             reduce using rule 20 (expressao_condicional -> IF statement THEN statement .)
+    SWAP            reduce using rule 20 (expressao_condicional -> IF statement THEN statement .)
+    DROP            reduce using rule 20 (expressao_condicional -> IF statement THEN statement .)
+    2DROP           reduce using rule 20 (expressao_condicional -> IF statement THEN statement .)
+    MAIOR           reduce using rule 20 (expressao_condicional -> IF statement THEN statement .)
+    MENOR           reduce using rule 20 (expressao_condicional -> IF statement THEN statement .)
+    FUNCAO_RAW      reduce using rule 20 (expressao_condicional -> IF statement THEN statement .)
+    $end            reduce using rule 20 (expressao_condicional -> IF statement THEN statement .)
+
+
+state 30
+
+    (19) expressao_condicional -> IF statement ELSE statement THEN . statement
+    (22) statement -> . NUM
+    (23) statement -> . expressao_artimetica
+    (11) expressao_artimetica -> . SOMA
+    (12) expressao_artimetica -> . SUBTRACAO
+    (13) expressao_artimetica -> . MULT
+    (14) expressao_artimetica -> . DIV
+    (15) expressao_artimetica -> . MOD
+    (16) expressao_artimetica -> . SWAP
+    (17) expressao_artimetica -> . DROP
+    (18) expressao_artimetica -> . 2DROP
+
+    NUM             shift and go to state 24
+    SOMA            shift and go to state 9
+    SUBTRACAO       shift and go to state 10
+    MULT            shift and go to state 11
+    DIV             shift and go to state 12
+    MOD             shift and go to state 13
+    SWAP            shift and go to state 14
+    DROP            shift and go to state 15
+    2DROP           shift and go to state 16
+
+    statement                      shift and go to state 31
+    expressao_artimetica           shift and go to state 25
+
+state 31
+
+    (19) expressao_condicional -> IF statement ELSE statement THEN statement .
+
+    NUM             reduce using rule 19 (expressao_condicional -> IF statement ELSE statement THEN statement .)
+    FUNCAO          reduce using rule 19 (expressao_condicional -> IF statement ELSE statement THEN statement .)
+    SOMA            reduce using rule 19 (expressao_condicional -> IF statement ELSE statement THEN statement .)
+    SUBTRACAO       reduce using rule 19 (expressao_condicional -> IF statement ELSE statement THEN statement .)
+    MULT            reduce using rule 19 (expressao_condicional -> IF statement ELSE statement THEN statement .)
+    DIV             reduce using rule 19 (expressao_condicional -> IF statement ELSE statement THEN statement .)
+    MOD             reduce using rule 19 (expressao_condicional -> IF statement ELSE statement THEN statement .)
+    SWAP            reduce using rule 19 (expressao_condicional -> IF statement ELSE statement THEN statement .)
+    DROP            reduce using rule 19 (expressao_condicional -> IF statement ELSE statement THEN statement .)
+    2DROP           reduce using rule 19 (expressao_condicional -> IF statement ELSE statement THEN statement .)
+    MAIOR           reduce using rule 19 (expressao_condicional -> IF statement ELSE statement THEN statement .)
+    MENOR           reduce using rule 19 (expressao_condicional -> IF statement ELSE statement THEN statement .)
+    FUNCAO_RAW      reduce using rule 19 (expressao_condicional -> IF statement ELSE statement THEN statement .)
+    $end            reduce using rule 19 (expressao_condicional -> IF statement ELSE statement THEN statement .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for NUM in state 27 resolved as shift
+WARNING: shift/reduce conflict for SOMA in state 27 resolved as shift
+WARNING: shift/reduce conflict for SUBTRACAO in state 27 resolved as shift
+WARNING: shift/reduce conflict for MULT in state 27 resolved as shift
+WARNING: shift/reduce conflict for DIV in state 27 resolved as shift
+WARNING: shift/reduce conflict for MOD in state 27 resolved as shift
+WARNING: shift/reduce conflict for SWAP in state 27 resolved as shift
+WARNING: shift/reduce conflict for DROP in state 27 resolved as shift
+WARNING: shift/reduce conflict for 2DROP in state 27 resolved as shift

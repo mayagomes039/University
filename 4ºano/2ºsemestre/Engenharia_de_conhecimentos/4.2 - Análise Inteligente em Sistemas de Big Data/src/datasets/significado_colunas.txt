@@ -1,0 +1,109 @@
+State: The long name of the state that this report was made for
+Year: The year that this report was made in.
+Data.Population: The number of people living in this state at the time the report was created.
+Data.Rates.Property.All: Rates are the number of reported offenses per 100,000 population. This property reflects all of the Property-related crimes, including burglaries, larcenies, and motor crimes.
+Data.Rates.Property.Burglary: Rates are the number of reported offenses per 100,000 population. This property reflects the number of burglaries, or entry into a building illegally with intent to commit a crime, especially theft.
+Data.Rates.Property.Larceny: Rates are the number of reported offenses per 100,000 population. This property reflects the number of burglaries, or theft of personal property.
+Data.Rates.Property.Motor: Rates are the number of reported offenses per 100,000 population. This property reflects the number of crimes where a motor vehicle was stolen.
+Data.Rates.Violent.All: Rates are the number of reported offenses per 100,000 population. This property reflects all of the Violent crimes, including assaults, murders, rapes, and robberies.
+Data.Rates.Violent.Assault: Rates are the number of reported offenses per 100,000 population. This property reflects the number of crimes where someone made an attempt to initiate harmful or offensive contact with a person, or made a threat to do so.
+Data.Rates.Violent.Murder: Rates are the number of reported offenses per 100,000 population. This property reflects the number of crimes where someone committed the unlawful killing of another human being without justification.
+Data.Rates.Violent.Rape: Rates are the number of reported offenses per 100,000 population. This property reflects the number of crimes where someone committed rape. The FBI UCR definition of rape, before 2013, is the carnal knowledge of a female forcibly and against her will.
+Data.Rates.Violent.Robbery: Rates are the number of reported offenses per 100,000 population. This property reflects the number of crimes where someone took or attempted to take anything of value by force or threat of force or by putting the victim in fear.
+Data.Totals.Property.All: This property reflects all of the Property-related crimes, including burglaries, larcenies, and motor crimes.
+Data.Totals.Property.Burglary: This property reflects the number of burglaries, or entry into a building illegally with intent to commit a crime, especially theft.
+Data.Totals.Property.Larceny: This property reflects the number of burglaries, or theft of personal property.
+Data.Totals.Property.Motor: This property reflects the number of crimes where a motor vehicle was stolen.
+Data.Totals.Violent.All: This property reflects all of the Violent crimes, including assaults, murders, rapes, and robberies
+Data.Totals.Violent.Assault: This property reflects the number of crimes where someone made an attempt to initiate harmful or offensive contact with a person, or made a threat to do so.
+Data.Totals.Violent.Murder: This property reflects the number of crimes where someone committed the unlawful killing of another human being without justification.
+Data.Totals.Violent.Rape: This property reflects the number of crimes where someone committed rape. The FBI UCR definition of rape, before 2013, is the carnal knowledge of a female forcibly and against her will.
+Data.Totals.Violent.Robbery: This property reflects the number of crimes where someone took or attempted to take anything of value by force or threat of force or by putting the victim in fear.
+State.Minimum.Wage: The actual State's minimum wage on January 1 of Year.
+State.Minimum.Wage.2020.Dollars: The State.Minimum.Wage in 2020 dollars.
+Federal.Minimum.Wage: The federal minimum wage on January 1 of Year.
+Federal.Minimum.Wage.2020.Dollars: The Federal.Minimum.Wage in 2020 dollars.
+Effective.Minimum.Wage: The minimum wage that is enforced in State on January 1 of Year. Because the federal minimum wage takes
+Effective.Minimum.Wage.2020.Dollars: The Effective.Minimum.Wage in 2020 dollars.
+CPI.Average: The average value of the Consumer Price Index in Year.
+Department.Of.Labor.Uncleaned.Data: The unclean, scraped value from the Department of Labor's website.
+Department.Of.Labor.Cleaned.Low.Value: The State's lowest enforced minimum wage on January 1 of Year.
+Department.Of.Labor.Cleaned.Low.Value.2020.Dollars: The Department.Of.Labor.Cleaned.Low.Value in 2020 dollars.
+Department.Of.Labor.Cleaned.High.Value: The State's higher enforced minimum wage on January 1 of Year.
+Department.Of.Labor.Cleaned.High.Value.2020.Dollars: The Department.Of.Labor.Cleaned.High.Value in 2020 dollars.
+Footnote: The footnote provided on the Department of Labor's website.
+less_than_hs: Average hourly wage for individuals with less than a high school education. 
+high_school: Average hourly wage for individuals with a high school education. 
+some_college: Average hourly wage for individuals with some college education.
+bachelors_degree: Average hourly wage for individuals with a bachelor's degree.
+advanced_degree: Average hourly wage for individuals with an advanced degree.
+men_less_than_hs: Average hourly wage for men with less than a high school education.
+men_high_school: Average hourly wage for men with a high school education. 
+men_some_college: Average hourly wage for men with some college education. 
+men_bachelors_degree: Average hourly wage for men with a bachelor's degree.
+men_advanced_degree: Average hourly wage for men with an advanced degree. 
+women_less_than_hs: Average hourly wage for women with less than a high school education.
+women_high_school: Average hourly wage for women with a high school education. 
+women_some_college: Average hourly wage for women with some college education. 
+women_bachelors_degree: Average hourly wage for women with a bachelor's degree. 
+women_advanced_degree: Average hourly wage for women with an advanced degree.
+white_less_than_hs: Average hourly wage for White individuals with less than a high school education
+white_high_school: Average hourly wage for White individuals with a high school education.
+white_some_college: Average hourly wage for White individuals with some college education.
+white_bachelors_degree: Average hourly wage for White individuals with a bachelor's degree.
+white_advanced_degree: Average hourly wage for White individuals with an advanced degree. 
+black_less_than_hs: Average hourly wage for Black individuals with less than a high school education. 
+black_high_school: Average hourly wage for Black individuals with a high school education.
+black_some_college: Average hourly wage for Black individuals with some college education. 
+black_bachelors_degree: Average hourly wage for Black individuals with a bachelor's degree.
+black_advanced_degree: Average hourly wage for Black individuals with an advanced degree.
+hispanic_less_than_hs: Average hourly wage for Hispanic individuals with less than a high school education. 
+hispanic_high_school: Average hourly wage for Hispanic individuals with a high school education.
+hispanic_some_college: Average hourly wage for Hispanic individuals with some college education.
+hispanic_bachelors_degree: Average hourly wage for Hispanic individuals with a bachelor's degree.
+hispanic_advanced_degree: Average hourly wage for Hispanic individuals with an advanced degree.
+white_men_less_than_hs: Average hourly wage for White men with less than a high school education. 
+white_men_high_school: Average hourly wage for White men with a high school education.
+white_men_some_college: Average hourly wage for White men with some college education.
+white_men_bachelors_degree: Average hourly wage for White men with a bachelor's degree. 
+white_men_advanced_degree: Average hourly wage for White men with an advanced degree.
+black_men_less_than_hs: Average hourly wage for Black men with less than a high school education. 
+black_men_high_school: Average hourly wage for Black men with a high school education.
+black_men_some_college: Average hourly wage for Black men with some college education.
+black_men_bachelors_degree: Average hourly wage for Black men with a bachelor's degree.
+black_men_advanced_degree: Average hourly wage for Black men with an advanced degree. 
+hispanic_men_less_than_hs: Average hourly wage for Hispanic men with less than a high school education. 
+hispanic_men_high_school: Average hourly wage for Hispanic men with a high school education.
+hispanic_men_some_college: Average hourly wage for Hispanic men with some college education. 
+hispanic_men_bachelors_degree: Average hourly wage for Hispanic men with a bachelor's degree. 
+hispanic_men_advanced_degree: Average hourly wage for Hispanic men with an advanced degree. 
+white_women_less_than_hs: Average hourly wage for White women with less than a high school education.
+white_women_high_school: Average hourly wage for White women with a high school education. 
+white_women_some_college: Average hourly wage for White women with some college education.
+white_women_bachelors_degree: Average hourly wage for White women with a bachelor's degree.
+white_women_advanced_degree: Average hourly wage for White women with an advanced degree.
+black_women_less_than_hs: Average hourly wage for Black women with less than a high school education. 
+black_women_high_school: Average hourly wage for Black women with a high school education. 
+black_women_some_college: Average hourly wage for Black women with some college education. 
+black_women_bachelors_degree: Average hourly wage for Black women with a bachelor's degree. 
+black_women_advanced_degree: Average hourly wage for Black women with an advanced degree.
+hispanic_women_less_than_hs: Average hourly wage for Hispanic women with less than a high school education.
+hispanic_women_high_school: Average hourly wage for Hispanic women with a high school education. 
+hispanic_women_some_college: Average hourly wage for Hispanic women with some college education. 
+hispanic_women_bachelors_degree: Average hourly wage for Hispanic women with a bachelor's degree.
+hispanic_women_advanced_degree: Average hourly wage for Hispanic women with an advanced degree.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

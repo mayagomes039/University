@@ -1,0 +1,67 @@
+# Equivalente do views.sql mas MongoDB
+
+# No mongosh:
+
+db.createView(
+  "book_with_authors",
+  "books",
+  [
+    {
+      $project: {
+        _id: 0,
+        book_id: "$_id",
+        title: 1,
+        authors: 1
+      }
+    },
+    { $unwind: "$authors" },
+    {
+      $project: {
+        book_id: 1,
+        title: 1,
+        author_name: "$authors.author_name"
+      }
+    }
+  ]
+)
+
+
+db.createView(
+  "orders_with_status",
+  "orders",
+  [
+    {
+      $set: {
+        order_history_sorted: {
+          $sortArray: {
+            input: "$order_history",
+            sortBy: { status_date: -1 }
+          }
+        }
+      }
+    },
+    {
+      $set: {
+        latest_status: { $arrayElemAt: ["$order_history_sorted", 0] }
+      }
+    },
+    {
+      $project: {
+        _id: 0,
+        order_id: "$_id",
+        order_date: 1,
+        status_value: "$latest_status.status_value"
+      }
+    }
+  ]
+)
+
+
+
+# para confirmar :
+db.book_with_authors.find().limit(5).pretty()
+db.book_with_authors.countDocuments()
+
+db.orders_with_status.find().limit(5).pretty()
+db.orders_with_status.find().sort({ order_id: 1 }).limit(5).pretty()
+db.orders_with_status.countDocuments()

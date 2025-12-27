@@ -1,0 +1,4 @@
+CREATE USER bookstore IDENTIFIED BY bookstore;
+
+GRANT CONNECT TO bookstore;
+GRANT ALL PRIVILEGES TO bookstore;

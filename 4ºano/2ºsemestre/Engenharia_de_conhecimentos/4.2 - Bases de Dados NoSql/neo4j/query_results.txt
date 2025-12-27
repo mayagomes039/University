@@ -1,0 +1,56 @@
+Neo4j Query Results
+=====================
+
+=== QUERY 1 RESULTS (Time: 2.1576 seconds) ===
+
+---
+
+=== QUERY 2 RESULTS (Time: 0.0023 seconds) ===
+
+---
+
+=== QUERY 3 RESULTS (Time: 0.0022 seconds) ===
+
+---
+
+=== QUERY 4 RESULTS (Time: 0.0029 seconds) ===
+
+---
+
+=== QUERY 5 RESULTS (Time: 0.0033 seconds) ===
+
+---
+
+=== QUERY 6 RESULTS (Time: 0.0037 seconds) ===
+
+---
+
+=== QUERY 7 RESULTS (Time: 0.0024 seconds) ===
+
+---
+
+=== QUERY 8 RESULTS (Time: 0.0048 seconds) ===
+
+---
+
+=== QUERY 9 RESULTS (Time: 0.0023 seconds) ===
+
+---
+
+=== QUERY 10 RESULTS (Time: 0.9494 seconds) ===
+
+---
+
+=== QUERY 11 RESULTS (Time: 0.6213 seconds) ===
+
+---
+
+=== QUERY 12 RESULTS (Time: 0.5896 seconds) ===
+
+---
+
+=== QUERY 13 RESULTS (Time: 0.8688 seconds) ===
+
+---
+
+ALL QUERIES COMPLETED IN 5.4144 seconds

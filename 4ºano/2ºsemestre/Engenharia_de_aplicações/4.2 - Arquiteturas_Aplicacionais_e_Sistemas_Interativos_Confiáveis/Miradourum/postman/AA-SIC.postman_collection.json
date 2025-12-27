@@ -1,0 +1,818 @@
+{
+	"info": {
+		"_postman_id": "540a917a-55f8-4aef-b381-19ba26eb4f0d",
+		"name": "AA-SIC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "32556264"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"henriquevaz7@hotmail.com\",\n  \"password\": \"123456\",\n  \"username\": \"quim\",\n  \"profileimage\":\"url.sd\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoxLCJpZCI6ODQsIlByZW1pdW1FbmREYXRlIjoiIiwiZW1haWwiOiJxdWltY2FvQG1haWwuY29tIiwidXNlcm5hbWUiOiJxdWltY2FvZGVsYSIsInN1YiI6InF1aW1jYW9AbWFpbC5jb20iLCJpYXQiOjE3NDUyNzgyMzEsImV4cCI6MTc0NTM2NDYzMX0.pzrGt7_oGR4ATPe7O9AjgvAHvVzR986PWwaODZpcn_E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"henriquevaz7@hotmail.com\",\n  \"password\": \"12345\",\n  \"username\": \"quim\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"vazera01@gmail.com\",\n  \"password\": \"mySecureNewPassword123\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoxLCJpZCI6MTAsIlByZW1pdW1FbmREYXRlIjoiIiwiZW1haWwiOiJhQGIuYyIsInVzZXJuYW1lIjoicXVpbSIsInN1YiI6ImFAYi5jIiwiaWF0IjoxNzQ4OTk3NjEwLCJleHAiOjE3NDkwODQwMTB9.WcCoBYOrEYxF8jD6w47ETSCsGiGINIuIg-1vBPZV89I",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/auth/profile",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"auth",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "PontoInteresse",
+			"item": [
+				{
+					"name": "Add Review",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoxLCJpZCI6NCwiUHJlbWl1bUVuZERhdGUiOiIiLCJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJ1c2VybmFtZSI6InF1aW0iLCJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNzQ2MDE3NzEyLCJleHAiOjE3NDYxMDQxMTJ9.MIcXMjnXUVxyd5ObdiLAKmUD9HbtJmybnfT2h7U7cl4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"rating\":0,\n    \"comment\":\"Man esse ramen é ganda fixe!\",\n    \"images\":[\n        \"shit.jpeg\",\"img2\"\n    ]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/pi/1/reviews",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pi",
+								"1",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add PI",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoxLCJpZCI6NSwiUHJlbWl1bUVuZERhdGUiOiIiLCJlbWFpbCI6InZhemVyYTAxQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiYXNkIiwic3ViIjoidmF6ZXJhMDFAZ21haWwuY29tIiwiaWF0IjoxNzQ5NDYzMzA2LCJleHAiOjE3NDk1NDk3MDZ9.4XtHp77ibpDV1c9Ket-KAobtsJokEK9dhUa_whn7KQw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"latitude\":41.5598,\n        \"longitude\":-8.3970,\n        \"name\":\"Miradouro da UM\",\n        \"description\":\"Fome de ramen\",\n        \"dificulty\":2,\n        \"accessibility\":false,\n        \"premium\":false,\n        \"creatorEmail\":\"henriquevaz7@hotmail.com\",\n        \"imageUrls\": [\"https://example.com/img1.jpg\", \"https://example.com/img2.jpg\"]\n\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/pi",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pi"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get PI Details Short",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoxLCJpZCI6NCwiUHJlbWl1bUVuZERhdGUiOiIiLCJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJ1c2VybmFtZSI6InF1aW0iLCJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNzQ2MDE3NzEyLCJleHAiOjE3NDYxMDQxMTJ9.MIcXMjnXUVxyd5ObdiLAKmUD9HbtJmybnfT2h7U7cl4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pi/shortdetails/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pi",
+								"shortdetails",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get PI Details Full",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoxLCJpZCI6NCwiUHJlbWl1bUVuZERhdGUiOiIiLCJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJ1c2VybmFtZSI6InF1aW0iLCJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNzQ2MDE3NzEyLCJleHAiOjE3NDYxMDQxMTJ9.MIcXMjnXUVxyd5ObdiLAKmUD9HbtJmybnfT2h7U7cl4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pi/details/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pi",
+								"details",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get all pis short",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoxLCJpZCI6NCwiUHJlbWl1bUVuZERhdGUiOiIiLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInVzZXJuYW1lIjoicXVpbSIsInN1YiI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTc0ODk3NDIzNCwiZXhwIjoxNzQ5MDYwNjM0fQ.QgCrvfIWZ_7PNw6y6lB_J246GeIHmodKblvztxpTFss",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pi",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pi"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Reviews",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pi/3/reviews",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pi",
+								"3",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put Review",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoxLCJpZCI6NCwiUHJlbWl1bUVuZERhdGUiOiIiLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInVzZXJuYW1lIjoicXVpbSIsInN1YiI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTc0ODk5MDIxMSwiZXhwIjoxNzQ5MDc2NjExfQ.KBRCvZ-TOguztI25mjG9wH8ZprTG1X535MCTvm70ggg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"comment\": \"Updated review comment\",\n  \"rating\": 4,\n  \"images\": [\n    \"ranheta.jpeg\",\n    \"base64encodedImage2==\"\n  ]\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/reviews/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"reviews",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Review",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/reviews/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"reviews",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Get User Info",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoxLCJpZCI6NCwiUHJlbWl1bUVuZERhdGUiOiIiLCJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJ1c2VybmFtZSI6InF1aW0iLCJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNzQ2MDE3NzEyLCJleHAiOjE3NDYxMDQxMTJ9.MIcXMjnXUVxyd5ObdiLAKmUD9HbtJmybnfT2h7U7cl4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Edit Profile Info",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoxLCJpZCI6NCwiUHJlbWl1bUVuZERhdGUiOiIiLCJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJ1c2VybmFtZSI6InF1aW0iLCJzdWIiOiJ0ZXN0QHRlc3QuY29tIiwiaWF0IjoxNzQ2MDE3NzEyLCJleHAiOjE3NDYxMDQxMTJ9.MIcXMjnXUVxyd5ObdiLAKmUD9HbtJmybnfT2h7U7cl4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/edit/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"edit",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Is Premium",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoxLCJpZCI6NCwiUHJlbWl1bUVuZERhdGUiOiIiLCJlbWFpbCI6ImhlbnJpcXVldmF6N0Bob3RtYWlsLmNvbSIsInVzZXJuYW1lIjoicG9yY29wcmV0byIsInN1YiI6ImhlbnJpcXVldmF6N0Bob3RtYWlsLmNvbSIsImlhdCI6MTc0OTQ2MDU0MCwiZXhwIjoxNzQ5NTQ2OTQwfQ.VQYkPi5HMQEuWEUnnnTx82Wp28ZPtI81JYkfsaLww8g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/premium",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"premium"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Gallery",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoxLCJpZCI6NywiUHJlbWl1bUVuZERhdGUiOiIiLCJlbWFpbCI6ImFAYS5hIiwidXNlcm5hbWUiOiJxdWltIiwic3ViIjoiYUBhLmEiLCJpYXQiOjE3NDg5OTU0OTUsImV4cCI6MTc0OTA4MTg5NX0.EFVGu9rzMNPemytQO0ls-6m7RsODw1vjU-pEVqGIvIg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/images",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"images"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get visitedPointsShort",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoxLCJpZCI6NywiUHJlbWl1bUVuZERhdGUiOiIiLCJlbWFpbCI6ImFAYS5hIiwidXNlcm5hbWUiOiJxdWltIiwic3ViIjoiYUBhLmEiLCJpYXQiOjE3NDg5OTU0OTUsImV4cCI6MTc0OTA4MTg5NX0.EFVGu9rzMNPemytQO0ls-6m7RsODw1vjU-pEVqGIvIg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/user/pontos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"pontos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "upgrade-premium",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoxLCJpZCI6NCwiUHJlbWl1bUVuZERhdGUiOiIiLCJlbWFpbCI6ImhlbnJpcXVldmF6N0Bob3RtYWlsLmNvbSIsInVzZXJuYW1lIjoicGlnIiwic3ViIjoiaGVucmlxdWV2YXo3QGhvdG1haWwuY29tIiwiaWF0IjoxNzQ5NDYxODE5LCJleHAiOjE3NDk1NDgyMTl9.BZ0sHYL2N4WVqJ8ErRJzWyZ6wQnw_5i6q_Kdcl_SaW4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"cardNumber\": \"1234567812345678\",\n  \"cardName\": \"John Doe\",\n  \"ccv\": \"123\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/upgrade-premium",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"upgrade-premium"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoxLCJpZCI6NSwiUHJlbWl1bUVuZERhdGUiOiIiLCJlbWFpbCI6InZhemVyYTAxQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoidmF6Iiwic3ViIjoidmF6ZXJhMDFAZ21haWwuY29tIiwiaWF0IjoxNzQ5NTAxOTQwLCJleHAiOjE3NDk1ODgzNDB9.5Vf8hykLQWnJ2b24k38eThlIfD1W29AEf2j8SqtNMts",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"newPassword\": \"mySecureNewPassword123\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/password",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "reset password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoxLCJpZCI6NSwiUHJlbWl1bUVuZERhdGUiOiIiLCJlbWFpbCI6InZhemVyYTAxQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoidmF6Iiwic3ViIjoidmF6ZXJhMDFAZ21haWwuY29tIiwiaWF0IjoxNzQ5NTAxOTQwLCJleHAiOjE3NDk1ODgzNDB9.5Vf8hykLQWnJ2b24k38eThlIfD1W29AEf2j8SqtNMts",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"email\":\"henriquevaz7@hotmail.com\",\n  \"newPassword\": \"banana\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/user/resetpassword",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"user",
+								"resetpassword"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Accept PI",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoyLCJpZCI6NSwiUHJlbWl1bUVuZERhdGUiOiIiLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInVzZXJuYW1lIjoicXVpbSIsInN1YiI6ImFkbWluQGFkbWluLmNvbSIsImlhdCI6MTc0ODg5OTkwMywiZXhwIjoxNzQ4OTg2MzAzfQ.VVA1GO4UUPni00HpvMWk2deyFzbfkic-UUV0JJZAd-0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accepted\":true,\n    \"comment\":\"ganda shit de post mano\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/admin/pi/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"admin",
+								"pi",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check Inactive PIs",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoyLCJpZCI6ODUsIlByZW1pdW1FbmREYXRlIjoiIiwiZW1haWwiOiJhZG1pbkBhZG1pbi5jb20iLCJ1c2VybmFtZSI6InF1aW0iLCJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJpYXQiOjE3NDUzMzQwMDMsImV4cCI6MTc0NTQyMDQwM30.nsBXVdqjk8vxCsyK5y-YsMF7FsDUZlq55c9WqI2rX2I",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/admin/pi",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"admin",
+								"pi"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "isAdmin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoxLCJpZCI6NSwiUHJlbWl1bUVuZERhdGUiOiIiLCJlbWFpbCI6InZhemVyYTAxQGdtYWlsLmNvbSIsInVzZXJuYW1lIjoiYXNkIiwic3ViIjoidmF6ZXJhMDFAZ21haWwuY29tIiwiaWF0IjoxNzQ5NDYzMzA2LCJleHAiOjE3NDk1NDk3MDZ9.4XtHp77ibpDV1c9Ket-KAobtsJokEK9dhUa_whn7KQw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/admin/isadmin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"admin",
+								"isadmin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoyLCJpZCI6ODUsIlByZW1pdW1FbmREYXRlIjoiIiwiZW1haWwiOiJhZG1pbkBhZG1pbi5jb20iLCJ1c2VybmFtZSI6InF1aW0iLCJzdWIiOiJhZG1pbkBhZG1pbi5jb20iLCJpYXQiOjE3NDUyODQxNTMsImV4cCI6MTc0NTM3MDU1M30.D0432nXNUR1gF5m0LcMAr9p4YL7s1IXu6KIm-IqAFc4",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

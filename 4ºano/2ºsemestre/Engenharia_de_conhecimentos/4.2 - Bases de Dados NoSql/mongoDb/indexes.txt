@@ -1,0 +1,11 @@
+# Indices para MongoDB
+
+db.book.createIndex({ title: 1 });
+db.customer.createIndex({ email: 1 });
+db.cust_order.createIndex({ order_date: 1 });
+db.address.createIndex({ country_id: 1 });
+
+db.book.getIndexes();
+db.customer.getIndexes();
+db.cust_order.getIndexes();
+db.address.getIndexes();
